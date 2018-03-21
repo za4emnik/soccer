@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321095352) do
+ActiveRecord::Schema.define(version: 20180321123725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "first_team_id"
+    t.bigint "second_team_id"
+    t.string "type"
+    t.integer "position"
+    t.string "aasm_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["first_team_id"], name: "index_matches_on_first_team_id"
+    t.index ["second_team_id"], name: "index_matches_on_second_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "first_member_id"
+    t.bigint "second_member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["first_member_id"], name: "index_teams_on_first_member_id"
+    t.index ["second_member_id"], name: "index_teams_on_second_member_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name"
+    t.integer "number_of_rounds"
+    t.string "aasm_state"
+    t.bigint "vote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vote_id"], name: "index_tournaments_on_vote_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +67,25 @@ ActiveRecord::Schema.define(version: 20180321095352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vote_items", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "vote_user_id"
+    t.decimal "vote", precision: 8, scale: 2
+    t.bigint "vote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vote_items_on_user_id"
+    t.index ["vote_id"], name: "index_vote_items_on_vote_id"
+    t.index ["vote_user_id"], name: "index_vote_items_on_vote_user_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "aasm_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "tournaments", "votes"
+  add_foreign_key "vote_items", "users"
+  add_foreign_key "vote_items", "votes"
 end
