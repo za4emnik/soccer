@@ -1,0 +1,8 @@
+%h2= "Add members to #{@tournament.name}"
+
+= form_for @tournament, url: admin_tournaments_path, method: :post do |f|
+- @users.each do |user|
+  .form-group
+    = f.label :number_of_rounds, 'Number of rounds', class: "control-label input-label"
+    = f.number_field :number_of_rounds, min: 1, max: 5, class: "form-control"
+  = f.submit 'Submit', class: "btn btn-default mb-20"
