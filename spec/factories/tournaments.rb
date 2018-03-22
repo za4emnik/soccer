@@ -1,8 +1,10 @@
+require 'ffaker'
+
 FactoryBot.define do
   factory :tournament do
-    name "MyString"
-    number_of_rounds 1
-    aasm_state "MyString"
+    name { FFaker::Name::first_name }
+    number_of_rounds 3
+    aasm_state "new"
     vote nil
   end
 end

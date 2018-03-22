@@ -1,0 +1,23 @@
+%h2 Tournaments
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Rounds
+      %th{:scope => "col"} Assign players
+      %th{:scope => "col"} Edit
+      %th{:scope => "col"} Delete
+  %tbody
+    - @tournaments.each do |tournament|
+      %tr
+        %th{:scope => "row"}= tournament.id
+        %td= tournament.name
+        %td= tournament.number_of_rounds
+        %td
+          =link_to 'assign', admin_tournament_players_path(tournament)
+        %td
+          =link_to 'edit', admin_tournament_path(tournament)
+        %td
+          =link_to 'delete', admin_tournament_path(tournament), method: :delete, data: { confirm: 'Are you sure?' }

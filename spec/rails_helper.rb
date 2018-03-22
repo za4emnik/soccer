@@ -14,6 +14,9 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Rails.application.routes.url_helpers
+
+  config.extend LoginControllerMacros, type: :controller
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

@@ -41,10 +41,8 @@ ActiveRecord::Schema.define(version: 20180321143144) do
     t.string "name"
     t.integer "number_of_rounds"
     t.string "aasm_state"
-    t.bigint "vote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vote_id"], name: "index_tournaments_on_vote_id"
   end
 
   create_table "tournaments_users", id: false, force: :cascade do |t|
@@ -87,12 +85,14 @@ ActiveRecord::Schema.define(version: 20180321143144) do
   end
 
   create_table "votes", force: :cascade do |t|
+    t.bigint "tournament_id"
     t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_votes_on_tournament_id"
   end
 
-  add_foreign_key "tournaments", "votes"
   add_foreign_key "vote_items", "users"
   add_foreign_key "vote_items", "votes"
+  add_foreign_key "votes", "tournaments"
 end

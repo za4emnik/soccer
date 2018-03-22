@@ -1,7 +1,10 @@
-%h2 Create Tournament
+%h2 Edit tournament
 
 = form_for @tournament, url: tournaments_path, method: :post do |f|
   .form-group
     = f.label :name, 'Name', class: "control-label input-label"
     = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :number_of_rounds, 'Number of rounds', class: "control-label input-label"
+    = f.number_field :number_of_rounds, min: 1, max: 5, class: "form-control"
   = f.submit 'Submit', class: "btn btn-default mb-20"
