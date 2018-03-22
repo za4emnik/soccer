@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Admin::PlayersController, type: :controller do
   describe '#index' do
-    subject { get :index }
+    let (:tournament) { FactoryBot.create(tournament) }
+    subject { get :index, params: { tournament_id: tournament.id } }
 
       context 'when admin' do
         login_admin
