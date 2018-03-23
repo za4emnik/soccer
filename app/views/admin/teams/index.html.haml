@@ -1,0 +1,29 @@
+%h2= "Participating teams in #{@tournament.name} tournament"
+
+%p= flash&.[](notice)
+
+=link_to 'generate commands', generate_teams_admin_tournament_teams_path, method: :put, class: 'btn btn-default'
+
+- if @tournament.teams
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Team
+        %th{:scope => "col"} First member
+        %th{:scope => "col"} Second member
+        %th{:scope => "col"} Edit
+        %th{:scope => "col"} Delete
+    %tbody
+    - @tournament.teams.each do |team|
+      %tr
+        %th{:scope => "row"}= team.id
+        %td= team.name
+        %td= team.first_member.email
+        %td= team.second_member.email
+        %td
+          =link_to 'edit', new_admin_tournament_team_path(@tournament, team.id)
+        %td
+          =link_to 'delete', new_admin_tournament_team_path(@tournament, team.id), method: :delete, data: { confirm: 'Are you sure?' }
+- else
+  %p teams not found

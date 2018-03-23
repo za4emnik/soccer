@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  has_many :ratings
   has_and_belongs_to_many :tournaments
 
   devise :database_authenticatable, :registerable,

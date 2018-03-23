@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321143144) do
+ActiveRecord::Schema.define(version: 20180323123340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,14 +27,26 @@ ActiveRecord::Schema.define(version: 20180321143144) do
     t.index ["second_team_id"], name: "index_matches_on_second_team_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "tournament_id"
+    t.bigint "user_id"
+    t.float "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_ratings_on_tournament_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.bigint "first_member_id"
     t.bigint "second_member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tournament_id"
     t.index ["first_member_id"], name: "index_teams_on_first_member_id"
     t.index ["second_member_id"], name: "index_teams_on_second_member_id"
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -92,6 +104,9 @@ ActiveRecord::Schema.define(version: 20180321143144) do
     t.index ["tournament_id"], name: "index_votes_on_tournament_id"
   end
 
+  add_foreign_key "ratings", "tournaments"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "teams", "tournaments"
   add_foreign_key "vote_items", "users"
   add_foreign_key "vote_items", "votes"
   add_foreign_key "votes", "tournaments"
