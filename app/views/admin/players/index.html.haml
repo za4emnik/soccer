@@ -1,3 +1,20 @@
 %h2= "Participants of #{@tournament.name} tournament"
 
 =link_to 'add members', new_admin_tournament_player_path, class: 'btn btn-default'
+
+- if @tournament.users
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Email
+        %th{:scope => "col"} Delete
+    %tbody
+    - @tournament.users.each do |user|
+      %tr
+        %th{:scope => "row"}= user.id
+        %td= user.email
+        %td
+          =link_to 'delete', admin_tournament_player_path(@tournament, user.id), method: :delete, data: { confirm: 'Are you sure?' }
+- else
+  %p players not found
