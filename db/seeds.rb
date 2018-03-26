@@ -14,6 +14,6 @@ User.create!(email: 'admin@example12.com', password: '12345678', password_confir
 User.create!(email: 'admin@example13.com', password: '12345678', password_confirmation: '12345678')
 
 tournament = Tournament.create!(name: 'New tournament')
-users = User.first(8)
+users = User.first(14)
 users.each { |user| user.ratings << Rating.create!(tournament: tournament, user: user, rating: rand(0..5)) }
-8.times { tournament.users << users.shift }
+users.count.times { tournament.users << users.shift }

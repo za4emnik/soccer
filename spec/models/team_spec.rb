@@ -5,5 +5,6 @@ RSpec.describe Team, type: :model do
     it { should belong_to(:first_member) }
     it { should belong_to(:second_member) }
     it { should belong_to(:tournament) }
+    it { should have_many(:scores) }
   end
 end

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       resources :players, only: [:index, :new, :destroy] do
         put 'update_list_of_players', on: :collection
       end
+      resources :matches do
+        put 'generate_matches', on: :collection
+        put 'generate_play_off', on: :collection
+      end
     end
   end
 end

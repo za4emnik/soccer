@@ -8,6 +8,7 @@
       %th{:scope => "col"} Rounds
       %th{:scope => "col"} Players
       %th{:scope => "col"} Teams
+      %th{:scope => "col"} Matches
       %th{:scope => "col"} Edit
       %th{:scope => "col"} Delete
   %tbody
@@ -20,6 +21,8 @@
           =link_to 'assign', admin_tournament_players_path(tournament)
         %td
           =link_to 'teams', admin_tournament_teams_path(tournament)
+        %td
+          =link_to 'matches', admin_tournament_matches_path(tournament)
         %td
           =link_to 'edit', admin_tournament_path(tournament)
         %td
