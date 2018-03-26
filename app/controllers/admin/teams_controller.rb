@@ -10,13 +10,21 @@ class Admin::TeamsController < Admin::AdminBaseController
 
   def destroy
     @tournament.users.delete(User.find(params[:id]))
-    redirect_to admin_tournament_players_path
   end
 
   def generate_teams
     check_players
     service = GenerateTeamsService.new(@tournament)
     service.generate()
+    redirect_to admin_tournament_teams_path
+  end
+
+  def edit_teams
+    #binding.pry
+  end
+
+  def update_teams
+    #binding.pry
   end
 
   private

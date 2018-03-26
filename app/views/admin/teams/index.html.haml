@@ -3,6 +3,7 @@
 %p= flash&.[](notice)
 
 =link_to 'generate commands', generate_teams_admin_tournament_teams_path, method: :put, class: 'btn btn-default'
+=link_to 'edit commands', edit_teams_admin_tournament_teams_path, class: 'btn btn-default'
 
 - if @tournament.teams
   %table.table.table-hover
@@ -21,8 +22,6 @@
         %td= team.name
         %td= team.first_member.email
         %td= team.second_member.email
-        %td
-          =link_to 'edit', new_admin_tournament_team_path(@tournament, team.id)
         %td
           =link_to 'delete', new_admin_tournament_team_path(@tournament, team.id), method: :delete, data: { confirm: 'Are you sure?' }
 - else

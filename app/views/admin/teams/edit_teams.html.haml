@@ -1,0 +1,22 @@
+%h2= "Edit teams"
+
+- if @tournament.teams
+  = form_for @tournament, url: update_teams_admin_tournament_teams_path, method: :put do |f|
+    %ul#sortable
+      - @tournament.teams.each do |team|
+        = fields_for team do |t|
+          = fields_for @tournament.users do |u|
+            .form-group
+              = u.label :first_member, team.first_member.email
+              = u.hidden_field team.first_member.id, value: team.id
+            .form-group
+              = u.label :second_member, team.second_member.email
+              = u.hidden_field team.second_member.id, value: team.id
+    = f.submit 'Submit', class: "btn btn-default mb-20"
+- else
+  %p teams not found
+
+#draggable.ui-widget-content
+  %p Drag me to my target
+#droppable.ui-widget-header
+  %p Drop here

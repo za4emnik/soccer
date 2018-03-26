@@ -30,6 +30,7 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'rectify'
 gem 'require_all'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
