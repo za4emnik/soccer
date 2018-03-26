@@ -36,6 +36,10 @@ RSpec.describe Admin::TeamsController, type: :controller do
       context 'when admin' do
         login_admin
 
+        before do
+          2.times { tournament.users << FactoryBot.create(:rating).user }
+        end
+
         it 'should generate teams' do
           expect{ subject }.to change{ tournament.teams.count }.by(1)
         end

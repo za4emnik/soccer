@@ -1,6 +1,7 @@
 class GenerateTeamsService
   def initialize(tournament)
     @tournament = tournament
+    @users = tournament.users
   end
 
   def generate

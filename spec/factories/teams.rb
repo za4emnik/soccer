@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :team do
     name "command"
-    first_member nil
-    second_member nil
+    association :first_member, factory: :user
+    association :second_member, factory: :user
   end
 end
