@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :score do
-    score 1
-    team nil
-    match nil
+    score 3
+    association :team
+    association :match
   end
 end

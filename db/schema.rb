@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180326143704) do
   create_table "matches", force: :cascade do |t|
     t.bigint "first_team_id"
     t.bigint "second_team_id"
-    t.string "match_type"
+    t.integer "match_type", default: 1
     t.integer "position"
     t.string "aasm_state"
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180326143704) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "score"
+    t.integer "score", default: 3
     t.bigint "team_id"
     t.bigint "match_id"
     t.datetime "created_at", null: false

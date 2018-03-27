@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the Admin::MatchesHelper. For example:
-#
-# describe Admin::MatchesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe Admin::MatchesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#winner?' do
+    let (:score) { FactoryBot.create(:score) }
+
+    it 'should return true if winner' do
+      expect(helper.winner?(score.match, score.team)).to be_truthy
+    end
+  end
 end

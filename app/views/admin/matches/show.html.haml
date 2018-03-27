@@ -1,0 +1,9 @@
+%h2 Match information
+
+%span First team:
+%p= @match.first_team.name
+%span Second team:
+%p= @match.second_team.name
+
+%span Winner:
+%p=@match&.scores&.first&.team&.name

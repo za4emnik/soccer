@@ -10,6 +10,23 @@ RSpec.describe GenerateMatchesService do
     end
   end
 
+  context '#remove_matches' do
+    let(:tournament) { FactoryBot.create(:tournament) }
+    subject { GenerateMatchesService.new(tournament) }
+
+    before do
+      5.times { tournament.matches << FactoryBot.create(:match) }
+    end
+
+    it 'should remove all matches' do
+      expect{ subject.remove_matches }.to change{ tournament.matches.count }.to(0)
+    end
+
+    it_behaves_like 'controller have variables', 'tournament': Tournament do
+      let(:controller) { subject }
+    end
+  end
+
   context '#generate' do
     let(:tournament) { FactoryBot.create(:tournament) }
     subject { GenerateTeamsService.new(tournament) }
@@ -41,7 +58,7 @@ RSpec.describe GenerateMatchesService do
     subject { GenerateMatchesService.new(tournament) }
 
     before do
-      10.times { tournament.users << FactoryBot.create(:user) }
+      10.times { tournament.teams << FactoryBot.create(:team, tournament: tournament) }
     end
 
     it 'should return number of games' do
@@ -63,7 +80,6 @@ RSpec.describe GenerateMatchesService do
 
     it 'should shuffle teams' do
       subject.shuffle_teams()
-      binding.pry
       expect(subject.instance_variable_get(:@teams)).not_to eq(tournament.teams)
     end
   end
@@ -73,47 +89,33 @@ RSpec.describe GenerateMatchesService do
     subject { GenerateMatchesService.new(tournament) }
 
     before do
-      16.times { tournament.teams << FactoryBot.create(:team) }
-      allow(subject).to receive(:get_number_of_regular_matches).and_return(8)
+      4.times { tournament.teams << FactoryBot.create(:team) }
+      allow(subject).to receive(:get_number_of_regular_matches).and_return(2)
     end
 
-    it 'should create matches' do
-      binding.pry
-      expect { subject.create_regular_matches }.to change{ tournament.matches.count }.by(30)
-    end
-  end
-
-  context '#create_teams' do
-    let (:tournament) { FactoryBot.create(:tournament) }
-    subject { GenerateTeamsService.new(tournament) }
-
-    before do
-      8.times { tournament.users << FactoryBot.create(:rating).user }
-      subject.shuffle_players
-    end
-
-    it 'should create teams' do
-      subject.create_teams
-      expect(tournament.teams).not_to be_empty
+    it 'should create match' do
+      matches = tournament.number_of_rounds * 2
+      expect { subject.create_regular_matches }.to change{ tournament.matches.count }.by(matches)
     end
   end
 
-  context '#create_team' do
+  context '#create_match' do
     let (:tournament) { FactoryBot.create(:tournament) }
-    let (:first_palyer) { FactoryBot.create(:user) }
-    let (:second_player) { FactoryBot.create(:user) }
-    subject { GenerateTeamsService.new(tournament).create_team('name', first_palyer, second_player) }
+    let (:first_team) { FactoryBot.create(:team) }
+    let (:second_team) { FactoryBot.create(:team) }
+    subject { GenerateMatchesService.new(tournament)
+                                    .create_match(first_team, second_team) }
 
-    it 'should create team' do
-      expect { subject }.to change{ Team.count }.by(1)
+    it 'should create match with passing params' do
+      expect { subject }.to change{ Match.count }.by(1)
     end
 
-    it 'should create team with passed params' do
+    it 'should create match with passing params' do
       subject
-      team = Team.first
-      expect(team.name).to eq('name')
-      expect(team.first_member).to eq(first_palyer)
-      expect(team.second_member).to eq(second_player)
+      match = Match.last
+      expect(match.first_team).to eq(first_team)
+      expect(match.second_team).to eq(second_team)
+      expect(match.tournament).to eq(tournament)
     end
   end
 end

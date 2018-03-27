@@ -1,3 +1,24 @@
 %h2= "Matches in #{@tournament.name}"
 
 =link_to 'Generate regular matches', generate_matches_admin_tournament_matches_path, method: :put, class: 'btn btn-default'
+=link_to 'Create new match', new_admin_tournament_match_path, class: 'btn btn-default'
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Team#1
+      %th{:scope => "col"} Team#2
+      %th{:scope => "col"} Edit
+      %th{:scope => "col"} Delete
+  %tbody
+    - @tournament.matches.each do |match|
+      %tr
+        %th{:scope => "row"}
+          =link_to match.id, admin_tournament_match_path(@tournament, match)
+        %td= match.first_team.name
+        %td= match.second_team.name
+        %td
+          =link_to 'edit', edit_admin_tournament_match_path(@tournament, match)
+        %td
+          =link_to 'delete', admin_tournament_match_path(@tournament, match), method: :delete, data: { confirm: 'Are you sure?' }
