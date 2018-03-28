@@ -34,6 +34,11 @@ class Admin::TournamentsController < Admin::AdminBaseController
     redirect_to admin_tournaments_path
   end
 
+  def done
+    @tournament.complete!
+    redirect_to admin_tournaments_path
+  end
+
   private
 
   def tournament_params

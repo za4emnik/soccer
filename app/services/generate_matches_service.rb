@@ -5,6 +5,7 @@ class GenerateMatchesService
   end
 
   def generate
+    @tournament.processed!
     remove_matches()
     shuffle_teams()
     create_regular_matches()

@@ -14,4 +14,36 @@ RSpec.describe TeamsController, type: :controller do
 
       it_behaves_like 'guest'
   end
+
+  describe '#show' do
+    let (:team) { FactoryBot.create(:team) }
+    subject { get :edit, params: { tournament_id: team.tournament.id, id: team.id } }
+
+      context 'when user' do
+        login_user
+
+        it_behaves_like 'controller have variables', 'tournament': Tournament,
+                                                     'team': Team
+      end
+
+      it_behaves_like 'guest'
+  end
+
+  describe '#update' do
+    let (:team) { FactoryBot.create(:team, first_member: controller.current_user || FactoryBot.create(:user)) }
+    subject { put :update, params: { tournament_id: team.tournament.id, id: team.id, team: { name: 'new name' } } }
+
+      context 'when user' do
+        login_user
+
+        it 'should update team name' do
+          expect{ subject }.to change{ team.reload.name }.to('new name')
+        end
+
+        it_behaves_like 'controller have variables', 'tournament': Tournament,
+                                                     'team': Team
+      end
+
+      it_behaves_like 'guest'
+  end
 end

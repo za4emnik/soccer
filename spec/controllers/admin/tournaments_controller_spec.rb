@@ -109,4 +109,26 @@ RSpec.describe Admin::TournamentsController, type: :controller do
     it_behaves_like 'user on admin page'
     it_behaves_like 'guest'
   end
+
+  describe '#done' do
+    let! (:tournament) { FactoryBot.create(:tournament) }
+    subject { post :done, params: { id: tournament.id } }
+
+    context 'when admin' do
+      login_admin
+
+      before do
+        tournament.processed!
+      end
+
+      it 'should done tournament' do
+        expect{ subject }.to change{ tournament.reload.aasm_state }.to('completed')
+      end
+
+      it_behaves_like 'redirect to', 'admin_tournaments_path'
+    end
+
+    it_behaves_like 'user on admin page'
+    it_behaves_like 'guest'
+  end
 end

@@ -1,5 +1,10 @@
 %h2 Your tournaments
 
+//= form_tag root_path, method: :get, class: 'form-inline' do
+//  .form-group
+//    = text_field_tag :search
+//  = f.submit 'Submit', class: "btn btn-default mb-20"
+
 %table.table.table-hover
   %thead
     %tr
@@ -40,3 +45,17 @@
         %td= team.second_member.email
         %td
           = link_to 'edit', edit_tournament_team_path(team.tournament, team)
+
+%h2 Aviable Vote
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Tournament
+      %th{:scope => "col"} Vote
+  %tbody
+  - current_user.tournaments.each do |tournament|
+    - if tournament.vote.present? && tournament.vote.new?
+      %tr
+        %td= tournament.name
+        %td
+          = link_to 'vote!', tournament_votes_path(tournament)

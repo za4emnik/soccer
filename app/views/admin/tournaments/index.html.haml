@@ -9,7 +9,9 @@
       %th{:scope => "col"} Players
       %th{:scope => "col"} Teams
       %th{:scope => "col"} Matches
+      %th{:scope => "col"} State
       %th{:scope => "col"} Edit
+      %th{:scope => "col"} Finish tournament
       %th{:scope => "col"} Delete
   %tbody
     - @tournaments.each do |tournament|
@@ -23,7 +25,10 @@
           =link_to 'teams', admin_tournament_teams_path(tournament)
         %td
           =link_to 'matches', admin_tournament_matches_path(tournament)
+          %td= tournament.aasm_state
         %td
           =link_to 'edit', admin_tournament_path(tournament)
+        %td
+          =link_to 'done', done_admin_tournament_path(tournament), method: :post if tournament.in_process?
         %td
           =link_to 'delete', admin_tournament_path(tournament), method: :delete, data: { confirm: 'Are you sure?' }

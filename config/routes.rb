@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     root 'admin_home#index'
     resources :admin
     resources :tournaments do
+      post 'done', on: :member
       resources :teams, only: [:index, :new, :destroy] do
         put 'generate_teams', on: :collection
         put 'update_teams', on: :collection
