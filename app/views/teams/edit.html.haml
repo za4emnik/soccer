@@ -1,0 +1,7 @@
+%h2 Edit team
+
+= form_for @team, url: tournament_team_path, method: :put do |f|
+  .form-group
+    = f.label :name, 'Team name', class: "control-label input-label"
+    = f.text_field :name
+  = f.submit 'Submit', class: "btn btn-default mb-20"

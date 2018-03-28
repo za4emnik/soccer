@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'home#index'
 
+  resources :tournaments do
+    resources :teams, only: [:index, :edit, :update]
+    resources :players, only: :index
+    resources :matches, only: [:index, :show]
+  end
+
   namespace :admin do
     root 'admin_home#index'
     resources :admin
@@ -16,7 +22,6 @@ Rails.application.routes.draw do
       end
       resources :matches do
         put 'generate_matches', on: :collection
-        put 'generate_play_off', on: :collection
         post 'sort', on: :collection
       end
     end

@@ -1,0 +1,13 @@
+%h2= "Participants of #{@tournament.name} tournament"
+
+- if @tournament.users
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} Email
+    %tbody
+    - @tournament.users.each do |user|
+      %tr
+        %td= user.email
+- else
+  %p players not assign yet

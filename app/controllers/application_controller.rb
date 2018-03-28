@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exeption|
     redirect_to main_app.root_path, notice: exeption.message

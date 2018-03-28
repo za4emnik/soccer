@@ -9,6 +9,7 @@
       %th{:scope => "col"} #
       %th{:scope => "col"} Team#1
       %th{:scope => "col"} Team#2
+      %th{:scope => "col"} Type
       %th{:scope => "col"} Edit
       %th{:scope => "col"} Delete
   %tbody#sortable{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
@@ -18,6 +19,7 @@
           =link_to match.id, admin_tournament_match_path(@tournament, match)
         %td= match.first_team.name
         %td= match.second_team.name
+        %td= match.match_type
         %td
           =link_to 'edit', edit_admin_tournament_match_path(@tournament, match)
         %td
