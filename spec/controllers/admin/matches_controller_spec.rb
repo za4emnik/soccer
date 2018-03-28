@@ -125,4 +125,30 @@ RSpec.describe Admin::MatchesController, type: :controller do
       it_behaves_like 'user on admin page'
       it_behaves_like 'guest'
   end
+
+  describe '#sort' do
+    let (:tournament) { FactoryBot.create(:tournament) }
+    let (:first_match) { FactoryBot.create(:match, position: 1) }
+    let (:second_match) { FactoryBot.create(:match, position: 2) }
+    subject { post :sort, params: { tournament_id: tournament.id, match: [second_match.id, first_match.id] } }
+
+    before do
+      tournament.matches << first_match
+      tournament.matches << second_match
+    end
+
+      context 'when admin' do
+        login_admin
+
+        it 'should update positions of matches' do
+          expect{ subject }.to change{ first_match.reload.position }.from(1).to(2)
+                          .and change{ second_match.reload.position }.from(2).to(1)
+        end
+
+        it_behaves_like 'controller have variables', 'tournament': Tournament
+      end
+
+      it_behaves_like 'user on admin page'
+      it_behaves_like 'guest'
+  end
 end

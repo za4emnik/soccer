@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :matches do
         put 'generate_matches', on: :collection
         put 'generate_play_off', on: :collection
+        post 'sort', on: :collection
       end
     end
   end

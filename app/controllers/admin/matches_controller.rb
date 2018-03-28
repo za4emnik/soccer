@@ -38,7 +38,10 @@ class Admin::MatchesController < Admin::AdminBaseController
     redirect_to admin_tournament_matches_path
   end
 
-  def generate_play_off
+  def sort
+    params[:match].each_with_index do |id, index|
+      Match.where(id: id).update_all(position: index+1)
+    end
   end
 
   private
