@@ -2,6 +2,7 @@ class VotesController < ApplicationController
   load_and_authorize_resource :tournament
 
   def show
+    authorize! :read, @tournament.vote
     @players = @tournament.users.joins("LEFT JOIN vote_items ON (vote_items.vote_user_id = users.id AND vote_items.vote_id = #{@tournament.vote.id} AND vote_items.user_id = #{current_user.id})").order('vote_items.value DESC')
   end
 

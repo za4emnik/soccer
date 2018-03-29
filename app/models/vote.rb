@@ -9,7 +9,7 @@ class Vote < ApplicationRecord
     state :closed
 
     event :close do
-      transitions from: :new, to: :closed
+      transitions from: :new, to: :closed, after: GenerateRatingsService
     end
   end
 end

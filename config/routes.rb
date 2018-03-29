@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :admin
     resources :tournaments do
       post 'done', on: :member
+      resources :votes, only: :update
       resources :teams, only: [:index, :new, :destroy] do
         put 'generate_teams', on: :collection
         put 'update_teams', on: :collection

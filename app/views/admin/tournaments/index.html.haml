@@ -12,6 +12,7 @@
       %th{:scope => "col"} State
       %th{:scope => "col"} Edit
       %th{:scope => "col"} Finish tournament
+      %th{:scope => "col"} Close Vote
       %th{:scope => "col"} Delete
   %tbody
     - @tournaments.each do |tournament|
@@ -30,5 +31,7 @@
           =link_to 'edit', admin_tournament_path(tournament)
         %td
           =link_to 'done', done_admin_tournament_path(tournament), method: :post if tournament.in_process?
+        %td
+          =link_to 'close', admin_tournament_vote_path(tournament, tournament.vote), method: :patch if tournament.vote.new?
         %td
           =link_to 'delete', admin_tournament_path(tournament), method: :delete, data: { confirm: 'Are you sure?' }
