@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :vote do
-    aasm_state "MyString"
+    association :tournament
+    aasm_state "new"
   end
 end

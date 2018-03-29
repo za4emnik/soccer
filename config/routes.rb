@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :tournaments do
+    resources :votes, only: :show do
+      post 'sort', on: :member
+    end
     resources :teams, only: [:index, :edit, :update]
     resources :players, only: :index
     resources :matches, only: [:index, :show]

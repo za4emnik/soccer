@@ -1,6 +1,7 @@
 class Vote < ApplicationRecord
   include AASM
 
+  has_many :vote_items
   belongs_to :tournament
 
   aasm do

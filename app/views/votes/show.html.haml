@@ -1,0 +1,11 @@
+%h2 Range players in #{@tournament.name} tournament
+%span all ranges was hidden for players
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Player
+  %tbody#sortable-votes{ "data-update-url": "#{sort_tournament_vote_path(@tournament, @tournament.vote)}" }
+    - @players.each do |user|
+      %tr{ id: "user_#{user.id}" }
+        %td= user.email

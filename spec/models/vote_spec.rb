@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'aasm/rspec'
 
 RSpec.describe Vote, type: :model do
+  it { should have_many(:vote_items) }
   it { should belong_to(:tournament) }
 
   describe 'change of states' do

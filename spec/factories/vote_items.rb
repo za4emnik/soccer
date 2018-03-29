@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :vote_item do
-    user nil
-    vote_user nil
-    vote "9.99"
-    vote nil
+    association :user
+    association :vote_user, factory: :user
+    association :vote
+    value 5
   end
 end

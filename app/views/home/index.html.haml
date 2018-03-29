@@ -58,4 +58,4 @@
       %tr
         %td= tournament.name
         %td
-          = link_to 'vote!', tournament_votes_path(tournament)
+          = link_to 'vote!', tournament_vote_path(tournament, tournament.vote)

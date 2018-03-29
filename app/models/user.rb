@@ -1,11 +1,16 @@
 class User < ApplicationRecord
 
   has_many :ratings
+  has_many :vote_items
   has_and_belongs_to_many :tournaments
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
+
+  #def vote_in_t(t, u)
+  #  vote_items.where(vote_user_id: self.id, vote_id: t.vote.id, user_id: u.id)
+  #end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
