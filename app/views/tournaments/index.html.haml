@@ -1,0 +1,24 @@
+%h2 All Tournaments
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Rounds
+      %th{:scope => "col"} Players
+      %th{:scope => "col"} Teams
+      %th{:scope => "col"} Matches
+      %th{:scope => "col"} State
+  %tbody
+    - @tournaments.each do |tournament|
+      %tr
+        %td
+          =link_to tournament.name, tournament_path(tournament)
+        %td= tournament.number_of_rounds
+        %td
+          =link_to 'show', tournament_players_path(tournament)
+        %td
+          =link_to 'teams', tournament_teams_path(tournament)
+        %td
+          =link_to 'matches', tournament_matches_path(tournament)
+          %td= tournament.aasm_state

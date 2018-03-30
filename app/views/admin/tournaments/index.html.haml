@@ -32,6 +32,6 @@
         %td
           =link_to 'done', done_admin_tournament_path(tournament), method: :post if tournament.in_process?
         %td
-          =link_to 'close', admin_tournament_vote_path(tournament, tournament.vote), method: :patch if tournament.vote.new?
+          =link_to 'close', admin_tournament_vote_path(tournament, tournament.vote), method: :patch if tournament.vote&.new?
         %td
           =link_to 'delete', admin_tournament_path(tournament), method: :delete, data: { confirm: 'Are you sure?' }
