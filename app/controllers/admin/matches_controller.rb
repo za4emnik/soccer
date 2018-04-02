@@ -24,8 +24,9 @@ class Admin::MatchesController < Admin::AdminBaseController
 
   def update
     @match.scores.delete_all
-    score = Score.new(match: @match, team_id: params[:winner])
-    redirect_to admin_tournament_matches_path if score.save
+    #score = Score.new(match: @match, team_id: params[:winner])
+    @match.update_attributes(match_params)
+    redirect_to admin_tournament_matches_path# if score.save
   end
 
   def destroy
@@ -48,7 +49,7 @@ class Admin::MatchesController < Admin::AdminBaseController
   private
 
   def match_params
-    params.require(:match).permit(:first_team_id, :second_team_id, :match_type)
+    params.require(:match).permit(:first_team_id, :second_team_id, :match_type, :first_team_result, :second_team_result)
   end
 
   def set_match

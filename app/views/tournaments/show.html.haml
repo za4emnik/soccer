@@ -13,10 +13,11 @@
       %th{:scope => "col"} Difference
       %th{:scope => "col"} Scores
   %tbody
-    - @tournament.matches.select{ |m| m.match_type == 'regular' }.each_with_index do |match, index|
+    -# - @tournament.matches.select{ |m| m.match_type == 'regular' }.each_with_index do |match, index|
+    - @teams.each_with_index do |match, index|
       %tr
         %td= index+1
-        -# %td= tournament.number_of_rounds
+        -# %td= match.number_of_rounds
         -# %td
           -# =link_to 'show', tournament_players_path(tournament)
         -# %td

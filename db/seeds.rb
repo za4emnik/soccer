@@ -38,7 +38,9 @@ teams = tournament.teams.to_a
   second_team = teams.shift()
   teams_array = [first_team, second_team]
   tournament.number_of_rounds.times do
-    match = Match.create!(first_team: first_team, second_team: second_team, tournament: tournament, match_type: 'regular')
-    Score.create!(match: match, team: teams_array.sample, score: 3)
+    first_team_result = rand(0..10)
+    second_team_result = 10 - first_team_result
+    Match.create!(first_team: first_team, second_team: second_team, tournament: tournament, first_team_result: first_team_result, second_team_result: second_team_result, match_type: 'regular')
+    # Score.create!(match: match, team: teams_array.sample, score: 3)
   end
 end
