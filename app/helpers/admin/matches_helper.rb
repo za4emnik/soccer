@@ -11,6 +11,8 @@ module Admin::MatchesHelper
       match.first_team.name
     elsif win?(match, 'second_team')
       match.second_team.name
+    elsif win?(match, 'second_team') == nil
+      'not played yet'
     else
       'dead heat'
     end
@@ -24,6 +26,6 @@ module Admin::MatchesHelper
 
   def win?(match, team_number)
     next_team_number = team_number == 'first_team' ? 'second_team' : 'first_team'
-    match.public_send("#{team_number}_result") > match.public_send("#{next_team_number}_result")
+    match.public_send("#{team_number}_result")&.> match.public_send("#{next_team_number}_result")
   end
 end

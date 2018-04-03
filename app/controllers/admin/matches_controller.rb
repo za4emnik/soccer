@@ -17,7 +17,7 @@ class Admin::MatchesController < Admin::AdminBaseController
 
   def create
     if @tournament.matches.create(match_params)
-      @tournament.processed!
+      #@tournament.processed!
       redirect_to admin_tournament_matches_path
     end
   end

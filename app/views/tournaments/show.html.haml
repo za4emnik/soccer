@@ -1,27 +1,237 @@
 %h2 Tournament table
 %h3 Regular matches:
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th{:scope => "col"} Place
-      %th{:scope => "col"} Command
-      %th{:scope => "col"} Games
-      %th{:scope => "col"} Victory
-      %th{:scope => "col"} Defeat
-      %th{:scope => "col"} Scoring Goals - Conceded Goals
-      %th{:scope => "col"} Difference
-      %th{:scope => "col"} Scores
+-# %table.table.table-hover
+  -# %thead
+    -# %tr
+      -# %th{:scope => "col"} Place
+      -# %th{:scope => "col"} Command
+      -# %th{:scope => "col"} Games
+      -# %th{:scope => "col"} Victory
+      -# %th{:scope => "col"} Defeat
+      -# %th{:scope => "col"} Scoring Goals - Conceded Goals
+      -# %th{:scope => "col"} Difference
+      -# %th{:scope => "col"} Scores
+  -# %tbody
+    -# - @regular_teams.each_with_index do |team, index|
+      -# %tr
+        -# %td= index+1
+        -# %td= team.name
+        -# %td= team.matches_count
+        -# %td= team.wins
+        -# %td= team.defeats
+        -# %td= "#{team.scoring_goals} - #{team.conceded_goals}"
+        -# %td= team.scoring_goals - team.conceded_goals
+        -# %td= team.wins * Match.points_for_victory
+-#
+-#
+-# %h3 Play off matches:
+-#
+-# %table.table.table-hover
+  -# %thead
+    -# %tr
+      -# %th{:scope => "col"} Place
+      -# %th{:scope => "col"} Command
+      -# %th{:scope => "col"} Games
+      -# %th{:scope => "col"} Victory
+      -# %th{:scope => "col"} Defeat
+      -# %th{:scope => "col"} Scoring Goals - Conceded Goals
+      -# %th{:scope => "col"} Difference
+      -# %th{:scope => "col"} Scores
+  -# %tbody
+    -# - @play_off.each_with_index do |team, index|
+      -# %tr
+        -# %td= index+1
+        -# %td= team.name
+        -# %td= team.matches_count
+        -# %td= team.wins
+        -# %td= team.defeats
+        -# %td= "#{team.scoring_goals} - #{team.conceded_goals}"
+        -# %td= team.scoring_goals&.- team.conceded_goals
+        -# %td= team.wins * Match.points_for_victory
+
+%table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "font-size: 90%; margin:1em 2em 1em 1em;"}
   %tbody
-    -# - @tournament.matches.select{ |m| m.match_type == 'regular' }.each_with_index do |match, index|
-    - @teams.each_with_index do |match, index|
-      %tr
-        %td= index+1
-        -# %td= match.number_of_rounds
-        -# %td
-          -# =link_to 'show', tournament_players_path(tournament)
-        -# %td
-          -# =link_to 'teams', tournament_teams_path(tournament)
-        -# %td
-          -# =link_to 'matches', tournament_matches_path(tournament)
-          -# %td= tournament.aasm_state
+    %tr
+      %td 
+      %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
+        1/8 финала
+      %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
+        1/4 финала
+      %td{:colspan => "2"}
+      %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
+        1/2 финала
+      %td{:colspan => "2"}
+      %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
+        Финал
+    %tr
+      %td{:width => "1"}
+      %td{:width => "25"}
+      %td{:width => "125"}
+      %td{:width => "25"}
+      %td{:width => "10"}
+      %td{:width => "10"}
+      %td{:width => "25"}         
+      %td{:width => "125"}
+      %td{:width => "25"}
+      %td{:width => "10"}
+      %td{:width => "10"}
+      %td{:width => "25"}
+      %td{:width => "125"}
+      %td{:width => "25"}
+    %tr
+      %td{:height => "14"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        D1
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        2
+      %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        E2
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        0
+      %td{:rowspan => "6", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        D1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        1
+      %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :colspan => "3", :rowspan => "2"}
+    %tr
+      %td{:height => "7"}
+      %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        F1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        2
+      %td{:rowspan => "10", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        F1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        2
+    %tr
+      %td{:height => "7"}
+    %tr
+      %td{:height => "14"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        H2
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        0
+      %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:colspan => "2", :height => "14"}
+      %td{:colspan => "8", :rowspan => "2"}
+         
+      %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        F1
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+    %tr
+      %td{:colspan => "2", :height => "14"}
+      %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        E1
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+    %tr
+      %td{:height => "14"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        E1
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        3
+      %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        D2
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        2
+      %td{:rowspan => "6", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        E1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        3
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :colspan => "3", :rowspan => "2"}
+    %tr
+      %td{:height => "7"}
+      %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        H1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        1
+      %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        H1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        4
+    %tr
+      %td{:height => "7"}
+    %tr
+      %td{:height => "14"}
+         
+      %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
+        F2
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+         
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        2
+      %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+         
