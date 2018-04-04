@@ -1,237 +1,202 @@
 %h2 Tournament table
 %h3 Regular matches:
 
--# %table.table.table-hover
-  -# %thead
-    -# %tr
-      -# %th{:scope => "col"} Place
-      -# %th{:scope => "col"} Command
-      -# %th{:scope => "col"} Games
-      -# %th{:scope => "col"} Victory
-      -# %th{:scope => "col"} Defeat
-      -# %th{:scope => "col"} Scoring Goals - Conceded Goals
-      -# %th{:scope => "col"} Difference
-      -# %th{:scope => "col"} Scores
-  -# %tbody
-    -# - @regular_teams.each_with_index do |team, index|
-      -# %tr
-        -# %td= index+1
-        -# %td= team.name
-        -# %td= team.matches_count
-        -# %td= team.wins
-        -# %td= team.defeats
-        -# %td= "#{team.scoring_goals} - #{team.conceded_goals}"
-        -# %td= team.scoring_goals - team.conceded_goals
-        -# %td= team.wins * Match.points_for_victory
--#
--#
--# %h3 Play off matches:
--#
--# %table.table.table-hover
-  -# %thead
-    -# %tr
-      -# %th{:scope => "col"} Place
-      -# %th{:scope => "col"} Command
-      -# %th{:scope => "col"} Games
-      -# %th{:scope => "col"} Victory
-      -# %th{:scope => "col"} Defeat
-      -# %th{:scope => "col"} Scoring Goals - Conceded Goals
-      -# %th{:scope => "col"} Difference
-      -# %th{:scope => "col"} Scores
-  -# %tbody
-    -# - @play_off.each_with_index do |team, index|
-      -# %tr
-        -# %td= index+1
-        -# %td= team.name
-        -# %td= team.matches_count
-        -# %td= team.wins
-        -# %td= team.defeats
-        -# %td= "#{team.scoring_goals} - #{team.conceded_goals}"
-        -# %td= team.scoring_goals&.- team.conceded_goals
-        -# %td= team.wins * Match.points_for_victory
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Place
+      %th{:scope => "col"} Command
+      %th{:scope => "col"} Games
+      %th{:scope => "col"} Victory
+      %th{:scope => "col"} Defeat
+      %th{:scope => "col"} Scoring Goals - Conceded Goals
+      %th{:scope => "col"} Difference
+      %th{:scope => "col"} Scores
+  %tbody
+    - @regular_teams.each_with_index do |team, index|
+      %tr
+        %td= index+1
+        %td= team.name
+        %td= team.matches_count
+        %td= team.wins
+        %td= team.defeats
+        %td= "#{team.scoring_goals} - #{team.conceded_goals}"
+        %td= team.scoring_goals - team.conceded_goals
+        %td= team.wins * Match.points_for_victory
 
-%table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "font-size: 90%; margin:1em 2em 1em 1em;"}
+%table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "font-size: 90%; margin:1em 2em 1em 1em; border-collapse: unset"}
   %tbody
     %tr
-      %td 
+      %td
       %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
-        1/8 финала
-      %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
-        1/4 финала
+        1/4 final
       %td{:colspan => "2"}
       %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
-        1/2 финала
+        1/2 final
       %td{:colspan => "2"}
       %td{:align => "center", :bgcolor => "#f2f2f2", :colspan => "3", :style => "border:1px solid #aaa;"}
-        Финал
+        final
     %tr
-      %td{:width => "1"}
-      %td{:width => "25"}
-      %td{:width => "125"}
-      %td{:width => "25"}
-      %td{:width => "10"}
-      %td{:width => "10"}
+      %td{:width => "1"}         
+      %td{:width => "25"}         
+      %td{:width => "125"}         
+      %td{:width => "25"}         
+      %td{:width => "10"}         
+      %td{:width => "10"}         
+      %td{:width => "25"}         
+      %td{:width => "125"}         
+      %td{:width => "25"}         
+      %td{:width => "10"}         
+      %td{:width => "10"}         
       %td{:width => "25"}         
       %td{:width => "125"}
       %td{:width => "25"}
-      %td{:width => "10"}
-      %td{:width => "10"}
-      %td{:width => "25"}
-      %td{:width => "125"}
-      %td{:width => "25"}
+    -# one four 1 first
     %tr
       %td{:height => "14"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        D1
-      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-        2
-      %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
-    %tr
-      %td{:height => "7"}
-      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        E2
-      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-        0
-      %td{:rowspan => "6", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
-         
-    %tr
-      %td{:height => "7"}
-      %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
-      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        D1
-      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
         1
+      %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        = @one_four[0]&.first_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        = @one_four[0]&.first_team_result
+      %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+    -# one four 1 second
+    %tr
+      %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"} 2
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_four[0]&.second_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_four[0]&.second_team_result
+      %td{:rowspan => "6", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
+    -# one two 1 first
+    %tr
+      %td{:height => "7"}
       %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"} 1
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[0]&.first_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[0]&.first_team_result
+      %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
+    -# one two 1 second
     %tr
       %td{:height => "7"}
       %td{:align => "center", :colspan => "3", :rowspan => "2"}
     %tr
       %td{:height => "7"}
       %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         
-      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        F1
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"} 2
       %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
+        = @one_two[0]&.second_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-        2
-      %td{:rowspan => "10", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
-         
+        = @one_two[0]&.second_team_result
+      %td{:rowspan => "10", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}       
+    -# one four 2 first
     %tr
       %td{:height => "7"}
       %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        F1
+        3
       %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
+        = @one_four[1]&.first_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-        2
+        = @one_four[1]&.first_team_result
     %tr
       %td{:height => "7"}
+    -# one four 2 second
     %tr
       %td{:height => "14"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        H2
+        4
       %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
+        = @one_four[1]&.second_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-        0
+        = @one_four[1]&.second_team_result
       %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         
+    -# final first
     %tr
       %td{:colspan => "2", :height => "14"}
       %td{:colspan => "8", :rowspan => "2"}
-         
       %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        F1
+        1
       %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
+        = @final&.first_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        = @final&.first_team_result
+    -# final second
     %tr
       %td{:colspan => "2", :height => "14"}
       %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        E1
+        2
       %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
+        = @final&.second_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
+        = @final&.second_team_result
+    -# one four 3 first
     %tr
       %td{:height => "14"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        E1
+        5
       %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
+        = @one_four[2]&.first_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-        3
+        = @one_four[2]&.first_team_result
       %td{:style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
+    -# one four 3 second
     %tr
       %td{:height => "7"}
       %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        D2
+        6
       %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
+        = @one_four[2]&.second_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-        2
+        = @one_four[2]&.second_team_result
       %td{:rowspan => "6", :style => "border-width:2px 2px 2px 0; border-style:solid;border-color:black;"}
-         
+    -# one two 2 first
     %tr
       %td{:height => "7"}
       %td{:rowspan => "2", :style => "border-width:0 0 2px 0; border-style:solid;border-color:black;"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        E1
-      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
         3
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[1]&.first_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[1]&.first_team_result
     %tr
       %td{:height => "7"}
       %td{:align => "center", :colspan => "3", :rowspan => "2"}
+    -# one two 2 second
     %tr
       %td{:height => "7"}
       %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        H1
-      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-        1
-      %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         
-    %tr
-      %td{:height => "7"}
-      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
-        H1
-      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
-         
-      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
         4
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[1]&.second_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_two[1]&.second_team_result
+      %td{:rowspan => "2", :style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
+    -# one four 3 first
     %tr
       %td{:height => "7"}
+      %td{:align => "center", :bgcolor => "#98A1B2", :rowspan => "2", :style => "border:1px solid #aaa;color:white;"}
+        7
+      %td{:bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_four[3]&.first_team&.name
+      %td{:align => "center", :bgcolor => "#f9f9f9", :rowspan => "2", :style => "border:1px solid #aaa;"}
+        = @one_four[3]&.first_team_result
+    %tr
+      %td{:height => "7"}
+    -# one four 3 second
     %tr
       %td{:height => "14"}
-         
       %td{:align => "center", :bgcolor => "#98A1B2", :style => "border:1px solid #aaa;color:white;"}
-        F2
+        8
       %td{:bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-         
+        = @one_four[3]&.second_team&.name
       %td{:align => "center", :bgcolor => "#f9f9f9", :style => "border:1px solid #aaa;"}
-        2
+        = @one_four[3]&.second_team_result
       %td{:style => "border-width:2px 0 0 0; border-style:solid;border-color:black;"}
-         

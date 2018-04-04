@@ -6,6 +6,7 @@ class Tournament < ApplicationRecord
   has_many :matches
   has_many :scores, through: :matches
   has_and_belongs_to_many :users, dependent: :destroy
+
   default_scope { includes(:users) }
 
   aasm do
