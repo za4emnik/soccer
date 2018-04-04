@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'home#index'
 
+  resources :users, only: :show
   resources :tournaments do
     resources :votes, only: :show do
       post 'sort', on: :member
     end
-    resources :teams, only: [:index, :edit, :update]
-    resources :players, only: :index
+    resources :teams, only: [:index, :edit, :update, :show]
+    resources :players, only: [:index]
     resources :matches, only: [:index, :show]
   end
 

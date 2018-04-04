@@ -16,7 +16,7 @@
     - @regular_teams.each_with_index do |team, index|
       %tr
         %td= index+1
-        %td= team.name
+        %td= link_to team.name, tournament_team_path(@tournament, team)
         %td= team.matches_count
         %td= team.wins
         %td= team.defeats

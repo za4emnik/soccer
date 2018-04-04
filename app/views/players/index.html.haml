@@ -8,6 +8,7 @@
     %tbody
     - @tournament.users.each do |user|
       %tr
-        %td= user.email
+        %td
+          = link_to user.email, user_path(user)
 - else
   %p players not assign yet

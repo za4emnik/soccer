@@ -1,0 +1,21 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Tournament
+      %th{:scope => "col"} Team Name
+      %th{:scope => "col"} First player
+      %th{:scope => "col"} Second player
+      %th{:scope => "col"} Edit
+  %tbody
+    - teams.each do |team|
+      %tr
+        %td
+          =link_to team.tournament.name, tournament_path(team.tournament)
+        %td
+          =link_to team.name, tournament_team_path(team.tournament, team)
+        %td
+          =link_to team.first_member.email, user_path(team.first_member)
+        %td
+          =link_to team.second_member.email, user_path(team.second_member)
+        %td
+          = link_to 'edit', edit_tournament_team_path(team.tournament, team)

@@ -8,10 +8,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  #def vote_in_t(t, u)
-  #  vote_items.where(vote_user_id: self.id, vote_id: t.vote.id, user_id: u.id)
-  #end
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

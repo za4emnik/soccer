@@ -5,46 +5,10 @@
     = text_field_tag :search
     = submit_tag 'Submit', class: "btn btn-default mb-20"
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th{:scope => "col"} #
-      %th{:scope => "col"} Name
-      %th{:scope => "col"} Rounds
-      %th{:scope => "col"} Players
-      %th{:scope => "col"} Teams
-      %th{:scope => "col"} Matches
-  %tbody
-    - current_user.tournaments.each do |tournament|
-      %tr
-        %th{:scope => "row"}= tournament.id
-        %td= tournament.name
-        %td= tournament.number_of_rounds
-        %td
-          =link_to 'players', tournament_players_path(tournament)
-        %td
-          =link_to 'teams', tournament_teams_path(tournament)
-        %td
-          =link_to 'matches', tournament_matches_path(tournament)
+= render partial: '/tournaments/tournaments', locals: {tournaments: current_user.tournaments}
 
-%h2 Your Teams
-%table.table.table-hover
-  %thead
-    %tr
-      %th{:scope => "col"} Tournament
-      %th{:scope => "col"} Team Name
-      %th{:scope => "col"} First player
-      %th{:scope => "col"} Second player
-      %th{:scope => "col"} Edit
-  %tbody
-    - @teams.each do |team|
-      %tr
-        %td= team.tournament.name
-        %td= team.name
-        %td= team.first_member.email
-        %td= team.second_member.email
-        %td
-          = link_to 'edit', edit_tournament_team_path(team.tournament, team)
+%h2 Teams
+= render partial: '/teams/teams', locals: {teams: @teams}
 
 %h2 Aviable Vote
 %table.table.table-hover

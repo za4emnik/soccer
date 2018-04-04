@@ -1,0 +1,7 @@
+%h2= "#{@team.name} INFO"
+
+%p First member
+%p= link_to @team.first_member.email, user_path(@team.first_member)
+
+%p Second member
+%p= link_to @team.second_member.email, user_path(@team.second_member)

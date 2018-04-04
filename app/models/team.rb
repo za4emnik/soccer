@@ -6,6 +6,7 @@ class Team < ApplicationRecord
   has_many :second_matches, class_name: 'Match', foreign_key: 'second_team_id'
   has_many :scores
 
+  scope :with_user, ->(user) { where(first_member: user).or(Team.where(second_member: user)) }
   scope :with_matches, -> { joins("LEFT JOIN matches ON matches.first_team_id = teams.id OR matches.second_team_id = teams.id") }
 
   def self.with_wins(type = :regular)
