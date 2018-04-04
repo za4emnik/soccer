@@ -7,6 +7,7 @@
       %th{:scope => "col"} Players
       %th{:scope => "col"} Teams
       %th{:scope => "col"} Matches
+      %th{:scope => "col"} State
   %tbody
     - tournaments.each do |tournament|
       %tr
@@ -20,3 +21,4 @@
           =link_to 'teams', tournament_teams_path(tournament)
         %td
           =link_to 'matches', tournament_matches_path(tournament)
+        %td= tournament.aasm_state

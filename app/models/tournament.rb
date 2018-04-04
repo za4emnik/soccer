@@ -23,6 +23,10 @@ class Tournament < ApplicationRecord
     end
   end
 
+  def self.with_filter(filter)
+    self.where(aasm_state: filter[:state])
+  end
+
   def create_vote
     Vote.create!(tournament: self)
   end
