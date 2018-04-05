@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_create :generate_rating
 
   has_many :ratings
   has_many :vote_items
@@ -15,5 +16,11 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.image = auth.info.image
     end
+  end
+
+  private
+
+  def generate_rating
+    self.initial_rating = (60 * Rating.average(:rating))/100
   end
 end

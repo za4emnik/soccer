@@ -15,7 +15,9 @@ class GenerateTeamsService
   end
 
   def shuffle_players
-    users = @tournament.users.sort_by{ |user| user.ratings.last.rating }.in_groups_of(2)
+    users = @tournament.users.sort_by do
+      |user| user&.ratings&.last&.rating || user.initial_rating }.in_groups_of(2)
+    end
     @users = users.map(&:shuffle).flatten
   end
 
