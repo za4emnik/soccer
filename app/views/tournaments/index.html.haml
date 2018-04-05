@@ -1,5 +1,7 @@
 %h2 All Tournaments
 
+= render partial: '/tournaments/filter', locals: {action: tournaments_path}
+
 %table.table.table-hover
   %thead
     %tr

@@ -23,8 +23,10 @@ class Tournament < ApplicationRecord
     end
   end
 
-  def self.with_filter(filter)
-    self.where(aasm_state: filter[:state])
+  def self.with_filter(relation, filter)
+    relation = relation.where("name LIKE ?", "%#{filter[:search]}%") if filter&.[](:search)
+    relation = relation.where(aasm_state: filter[:type]) if filter&.[](:type).present?
+    relation
   end
 
   def create_vote

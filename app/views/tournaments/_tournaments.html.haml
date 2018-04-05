@@ -9,16 +9,19 @@
       %th{:scope => "col"} Matches
       %th{:scope => "col"} State
   %tbody
-    - tournaments.each do |tournament|
-      %tr
-        %th{:scope => "row"}= tournament.id
-        %td
-          = link_to tournament.name, tournament_path(tournament)
-        %td= tournament.number_of_rounds
-        %td
-          =link_to 'players', tournament_players_path(tournament)
-        %td
-          =link_to 'teams', tournament_teams_path(tournament)
-        %td
-          =link_to 'matches', tournament_matches_path(tournament)
-        %td= tournament.aasm_state
+    - if tournaments
+      - tournaments.each do |tournament|
+        %tr
+          %th{:scope => "row"}= tournament.id
+          %td
+            = link_to tournament.name, tournament_path(tournament)
+          %td= tournament.number_of_rounds
+          %td
+            =link_to 'players', tournament_players_path(tournament)
+          %td
+            =link_to 'teams', tournament_teams_path(tournament)
+          %td
+            =link_to 'matches', tournament_matches_path(tournament)
+          %td= tournament.aasm_state
+    - else
+      %p Not found

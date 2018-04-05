@@ -1,16 +1,10 @@
 %h2 Your tournaments
 
-= form_tag root_path, method: :get, class: 'form-inline' do
-  = fields_for 'search' do |s|
-    .form-group
-      = s.text_field :search
-    .form-group
-      = s.select :type, options_for_select(['new', 'in_process', 'completed'])
-  = submit_tag 'Submit', class: "btn btn-default mb-20"
-
+= render partial: '/tournaments/filter', locals: {action: root_path}
 = render partial: '/tournaments/tournaments', locals: {tournaments: @tournaments}
 
 %h2 Teams
+= render partial: '/teams/filter', locals: {action: root_path}
 = render partial: '/teams/teams', locals: {teams: @teams, edit: true}
 
 %h2 Aviable Vote
@@ -20,9 +14,10 @@
       %th{:scope => "col"} Tournament
       %th{:scope => "col"} Vote
   %tbody
-  - @tournaments.each do |tournament|
-    - if tournament.vote.present? && tournament.vote.new?
-      %tr
-        %td= tournament.name
-        %td
-          = link_to 'vote!', tournament_vote_path(tournament, tournament.vote)
+    - if current_user.tournaments
+      - current_user.tournaments.each do |tournament|
+        - if tournament.vote.present? && tournament.vote.new?
+          %tr
+            %td= tournament.name
+            %td
+              = link_to 'vote!', tournament_vote_path(tournament, tournament.vote)

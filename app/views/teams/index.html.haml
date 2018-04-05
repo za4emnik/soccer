@@ -1,17 +1,4 @@
 %h2= "Participating teams in #{@tournament.name} tournament"
 
-- if @tournament.teams
-  %table.table.table-hover
-    %thead
-      %tr
-        %th{:scope => "col"} Team name
-        %th{:scope => "col"} First member
-        %th{:scope => "col"} Second member
-    %tbody
-    - @tournament.teams.each do |team|
-      %tr
-        %td= team.name
-        %td= team.first_member.email
-        %td= team.second_member.email
-- else
-  %p teams not found
+= render partial: '/teams/filter', locals: {action: tournament_teams_path}
+= render partial: '/teams/teams', locals: {teams: @teams, edit: false}

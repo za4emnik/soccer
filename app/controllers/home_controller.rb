@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @tournaments = current_user.tournaments.with_filter(params[:search])
-    @teams = Team.with_user(current_user)
+    @tournaments = Tournament.with_filter(current_user.tournaments, params[:tournament_search])
+    @teams = Team.with_filter(Team.with_user(current_user), params[:player_search])
   end
 end
