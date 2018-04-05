@@ -3,6 +3,7 @@ class Admin::TeamsController < Admin::AdminBaseController
   load_and_authorize_resource :user, through: :tournament
 
   def index
+    @teams = Team.with_filter(@tournament.teams, params[:player_search])
   end
 
   def new

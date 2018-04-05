@@ -18,4 +18,8 @@ class Match < ApplicationRecord
   def self.points_for_victory
     3
   end
+
+  def self.with_filter(relation, filter)
+    MatchesQuery.new(relation).with_filter(filter)
+  end
 end

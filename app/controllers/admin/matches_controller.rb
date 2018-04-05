@@ -3,6 +3,7 @@ class Admin::MatchesController < Admin::AdminBaseController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
   def index
+    @matches = Match.with_filter(@tournament.matches, params[:match_search])
   end
 
   def show
@@ -17,7 +18,7 @@ class Admin::MatchesController < Admin::AdminBaseController
 
   def create
     if @tournament.matches.create(match_params)
-      #@tournament.processed!
+      @tournament.processed! if @tournament.new?
       redirect_to admin_tournament_matches_path
     end
   end

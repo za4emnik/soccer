@@ -1,0 +1,11 @@
+= form_tag action, method: :get, class: 'form-inline' do
+  = fields_for 'match_search' do |s|
+    .form-group
+      = s.label 'Name'
+      = s.text_field :name, class: 'form-control', value: params&.[](:match_search)&.[](:name)
+    .form-group
+      = s.label :type, 'by team'
+      = s.radio_button :type, 'team', checked: filter_type_checked?('team'), class: 'form-control'
+      = s.label :type, 'by player'
+      = s.radio_button :type, 'player', checked: filter_type_checked?('player'), class: 'form-control'
+  = submit_tag 'Submit', class: "btn btn-default mb-20"

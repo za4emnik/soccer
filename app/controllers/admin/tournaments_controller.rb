@@ -2,6 +2,7 @@ class Admin::TournamentsController < Admin::AdminBaseController
   load_and_authorize_resource param_method: :tournament_params
 
   def index
+    @tournaments = Tournament.with_filter(Tournament.all, params[:tournament_search])
   end
 
   def show

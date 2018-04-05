@@ -2,7 +2,7 @@
   = fields_for 'tournament_search' do |s|
     .form-group
       = s.label 'Name'
-      = s.text_field :search, class: 'form-control', value: params&.[](:search)&.[](:search)
+      = s.text_field :search, class: 'form-control', value: params&.[](:tournament_search)&.[](:search)
     .form-group
-      = s.select :type, options_for_select(['new', 'in_process', 'completed'], params&.[](:search)&.[](:type)), prompt: 'state', class: 'form-control'
+      = s.select :type, options_for_select(['new', 'in_process', 'completed'], params&.[](:tournament_search)&.[](:type)), prompt: 'state', class: 'form-control'
   = submit_tag 'Submit', class: "btn btn-default mb-20"

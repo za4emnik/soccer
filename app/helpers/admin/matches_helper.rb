@@ -18,6 +18,10 @@ module Admin::MatchesHelper
     end
   end
 
+  def filter_type_checked?(type)
+    params&.[](:match_search)&.[](:type) == type
+  end
+
   private
 
   def get_team_number(match, team)

@@ -5,7 +5,9 @@
 =link_to 'generate commands', generate_teams_admin_tournament_teams_path, method: :put, class: 'btn btn-default'
 =link_to 'edit commands', edit_teams_admin_tournament_teams_path, class: 'btn btn-default'
 
-- if @tournament.teams
+= render partial: '/teams/filter', locals: {action: admin_tournament_teams_path(@tournament)}
+
+- if @teams
   %table.table.table-hover
     %thead
       %tr
@@ -16,7 +18,7 @@
         %th{:scope => "col"} Edit
         %th{:scope => "col"} Delete
     %tbody
-    - @tournament.teams.each do |team|
+    - @teams.each do |team|
       %tr
         %th{:scope => "row"}= team.id
         %td= team.name

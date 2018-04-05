@@ -6,5 +6,5 @@
   .form-group
     = f.collection_select(:second_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select second team', class: "form-control" })
   .form-group
-    = f.select(:match_type, [['regular', 'regular'], ['1/8', 'one_eighth'], ['1/4', 'one_four'], ['1/2', 'one_two'], ['third place', 'third_place']], selected: 'one_eighth')
+    = f.select(:match_type, [['regular', 'regular'], ['1/8', 'one_eight'], ['1/4', 'one_four'], ['1/2', 'one_two'], ['third place', 'third_place']], selected: 'one_eighth')
   = f.submit 'Submit', class: "btn btn-default mb-20"

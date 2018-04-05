@@ -3,6 +3,8 @@
 =link_to 'Generate regular matches', generate_matches_admin_tournament_matches_path, method: :put, class: 'btn btn-default'
 =link_to 'Create new match', new_admin_tournament_match_path, class: 'btn btn-default'
 
+= render partial: 'admin/matches/filter', locals: {action: admin_tournament_matches_path(@tournament)}
+
 %table.table.table-hover
   %thead
     %tr
@@ -14,7 +16,7 @@
       %th{:scope => "col"} Edit
       %th{:scope => "col"} Delete
   %tbody#sortable{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
-    - @tournament.matches.each do |match|
+    - @matches.each do |match|
       %tr{ id: "match_#{match.id}" }
         %th{:scope => "row"}
           =link_to match.id, admin_tournament_match_path(@tournament, match)
