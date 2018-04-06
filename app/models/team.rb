@@ -9,6 +9,7 @@ class Team < ApplicationRecord
   has_many :first_matches, class_name: 'Match', foreign_key: 'first_team_id'
   has_many :second_matches, class_name: 'Match', foreign_key: 'second_team_id'
 
+  default_scope { includes(:first_member, :second_member) }
   scope :with_user, ->(user) { where(first_member: user).or(Team.where(second_member: user)) }
 
   def self.with_wins(relation = Team.all, type = :regular)
