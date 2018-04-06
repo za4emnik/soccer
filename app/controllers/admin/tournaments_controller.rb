@@ -16,17 +16,17 @@ class Admin::TournamentsController < Admin::AdminBaseController
 
   def create
     if @tournament.save
-      redirect_to admin_tournament_path(@tournament)
+      redirect_to admin_tournaments_path
     else
-      render(:new)
+      render :new
     end
   end
 
   def update
     if @tournament.update_attributes(tournament_params)
-      redirect_to admin_tournament_path(@tournament)
+      redirect_to admin_tournaments_path
     else
-      render(:new)
+      render :new
     end
   end
 

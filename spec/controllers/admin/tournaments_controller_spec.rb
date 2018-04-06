@@ -74,7 +74,7 @@ RSpec.describe Admin::TournamentsController, type: :controller do
 
   describe '#update' do
     let (:tournament) { FactoryBot.create(:tournament) }
-    let (:tournament_attributes) { FactoryBot.attributes_for(:tournament) }
+    let (:tournament_attributes) { FactoryBot.attributes_for(:tournament, name: 'New name') }
     subject { put :update, params: { id: tournament.id, tournament: tournament_attributes } }
 
       context 'when admin' do

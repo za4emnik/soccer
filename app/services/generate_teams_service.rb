@@ -20,7 +20,7 @@ class GenerateTeamsService
   end
 
   def generate_team_name(first_player, last_palyer)
-    "#{first_player.email}_#{last_palyer.email}"
+    "#{first_player.email}_#{last_palyer.email}".truncate(29)
   end
 
   def create_teams

@@ -6,26 +6,26 @@ class Admin::MatchesController < Admin::AdminBaseController
     @matches = Match.with_filter(@tournament.matches, params[:match_search])
   end
 
-  def show
-  end
-
   def new
     @match = Match.new(tournament: @tournament)
   end
 
-  def edit
-  end
-
   def create
-    if @tournament.matches.create(match_params)
+    @match = @tournament.matches.new(match_params)
+    if @match.save
       @tournament.processed! if @tournament.new?
       redirect_to admin_tournament_matches_path
+    else
+      render :new
     end
   end
 
   def update
-    @match.update_attributes(match_params)
-    redirect_to admin_tournament_matches_path
+    if @match.update_attributes(match_params)
+      redirect_to admin_tournament_matches_path
+    else
+      render :edit
+    end
   end
 
   def destroy

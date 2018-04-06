@@ -20,7 +20,8 @@
     - @tournaments.each do |tournament|
       %tr
         %th{:scope => "row"}= tournament.id
-        %td= tournament.name
+        %td
+          = link_to tournament.name, admin_tournament_path(tournament)
         %td= tournament.number_of_rounds
         %td
           =link_to 'assign', admin_tournament_players_path(tournament)
@@ -30,7 +31,7 @@
           =link_to 'matches', admin_tournament_matches_path(tournament)
           %td= tournament.aasm_state
         %td
-          =link_to 'edit', admin_tournament_path(tournament)
+          =link_to 'edit', edit_admin_tournament_path(tournament)
         %td
           =link_to 'done', done_admin_tournament_path(tournament), method: :post if tournament.in_process?
         %td

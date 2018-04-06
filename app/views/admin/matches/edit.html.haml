@@ -1,17 +1,12 @@
 %h2 Edit match ##{@match.id}
 
 = form_for @match, url: admin_tournament_match_path, method: :put do |f|
-  -# .form-group
-    -# %p Who win?
-    -# = f.label :first_team, @match.first_team.name, class: "control-label input-label"
-    -# = radio_button_tag :winner, @match.first_team.id, winner?(@match, @match.first_team), class: "radio-input"
-  -# .form-group
-    -# = f.label :first_team, @match.second_team.name, class: "control-label input-label"
-    -# = radio_button_tag :winner, @match.second_team.id, winner?(@match, @match.second_team), class: "radio-input"
-  .form-group
+  .form-group{class: add_error_class(@match, :first_team_result)}
     = f.label :first_team_result, class: "control-label input-label"
-    = f.text_field :first_team_result, class: "radio-input"
-  .form-group
+    = f.text_field :first_team_result, class: "form-control"
+    .span.help-block= show_errors(@match, :first_team_result)
+  .form-group{class: add_error_class(@match, :second_team_result)}
     = f.label :second_team_result, class: "control-label input-label"
-    = f.text_field :second_team_result, class: "radio-input"
+    = f.text_field :second_team_result, class: "form-control"
+    .span.help-block= show_errors(@match, :second_team_result)
   = f.submit 'Submit', class: "btn btn-default mb-20"

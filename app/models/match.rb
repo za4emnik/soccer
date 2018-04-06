@@ -1,13 +1,14 @@
 class Match < ApplicationRecord
-  enum match_type: [ :regular, :one_eight, :one_four, :one_two, :third_place, :final ]
   acts_as_list scope: :tournament
+  enum match_type: [ :regular, :one_eight, :one_four, :one_two, :third_place, :final ]
+
+  validates :first_team, :second_team, presence: true
+  validates :first_team_result, :second_team_result, numericality: { less_than: 11 }, on: :update
 
   belongs_to :first_team, class_name: 'Team', foreign_key: 'first_team_id'
   belongs_to :second_team, class_name: 'Team', foreign_key: 'second_team_id'
   belongs_to :tournament
-  has_many :scores
 
-  # scope :with_teams,         -> { left_joins(:first_team, :second_team) }
   scope :one_eight_matches,  -> { one_eight.first(16) }
   scope :one_four_matches,   -> { one_four.first(8) }
   scope :one_two_matches,    -> { one_two.first(4) }

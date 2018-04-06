@@ -1,1 +1,14 @@
-%h2= "Tournment: #{@tournament.name}"
+%h2= "#{@tournament.name} info:"
+
+%span name:
+%p= @tournament.name
+%span rounds:
+%p= @tournament.number_of_rounds
+%span number of players:
+%p= @tournament.users&.count || 0
+%span number of teams:
+%p= @tournament.teams&.count || 0
+%span matches:
+%p= @tournament.matches&.count || 0
+%span state:
+%p= @tournament.aasm_state

@@ -5,10 +5,10 @@ class GenerateMatchesService
   end
 
   def generate
-    @tournament.processed! if @tournament.new?
     remove_matches()
     shuffle_teams()
     create_regular_matches()
+    @tournament.processed! if @tournament.new?
   end
 
   def remove_matches

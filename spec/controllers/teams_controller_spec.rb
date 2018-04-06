@@ -31,13 +31,13 @@ RSpec.describe TeamsController, type: :controller do
 
   describe '#update' do
     let (:team) { FactoryBot.create(:team, first_member: controller.current_user || FactoryBot.create(:user)) }
-    subject { put :update, params: { tournament_id: team.tournament.id, id: team.id, team: { name: 'new name' } } }
+    subject { put :update, params: { tournament_id: team.tournament.id, id: team.id, team: { name: 'new_name' } } }
 
       context 'when user' do
         login_user
 
         it 'should update team name' do
-          expect{ subject }.to change{ team.reload.name }.to('new name')
+          expect{ subject }.to change{ team.reload.name }.to('new_name')
         end
 
         it_behaves_like 'controller have variables', 'tournament': Tournament,

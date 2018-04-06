@@ -34,7 +34,7 @@ User.create!(email: 'admin@example31.com', password: '12345678', password_confir
 
 3.times do
   #create tournament
-  tournament = Tournament.create!(name: 'New tournament', number_of_rounds: 3)
+  tournament = Tournament.create!(name: 'New tournament', number_of_rounds: 3, aasm_state: 'in_process')
 
   #create ratings for 32 users and assign 32 users to tournament
   users = User.first(32)

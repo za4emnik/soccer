@@ -61,13 +61,13 @@ RSpec.describe GenerateTeamsService do
   end
 
   context '#generate_team_name' do
-    let (:first_member) { FactoryBot.create(:user) }
-    let (:second_member) { FactoryBot.create(:user) }
+    let (:first_member) { FactoryBot.create(:user, email: 's@s.s') }
+    let (:second_member) { FactoryBot.create(:user, email: 'w@w.w') }
     subject { GenerateTeamsService.new(FactoryBot.create(:tournament))
                                   .generate_team_name(first_member, second_member) }
 
     it 'should return generated name' do
-      expect(subject).to eq("#{first_member.email}_#{second_member.email}")
+      expect(subject).to eq('s@s.s_w@w.w')
     end
   end
 

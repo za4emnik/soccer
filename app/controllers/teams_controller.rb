@@ -7,8 +7,11 @@ class TeamsController < ApplicationController
   end
 
   def update
-    @team.update_attributes(team_params)
-    redirect_to root_path if @team.save
+    if @team.update_attributes(team_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
