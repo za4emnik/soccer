@@ -4,5 +4,7 @@ jQuery ->
     containment: 'parent'
     cursor: 'move'
     tolerance: 'pointer'
-    update: (event,ui)->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+jQuery ->
+  $('#save-vote').click ->
+    $.post($('#sortable-votes').data('update-url'), $('#sortable-votes').sortable('serialize'))
+    window.location.href = $(this).data('redirect-url')

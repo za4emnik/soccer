@@ -15,7 +15,7 @@
       %th{:scope => "col"} Type
       %th{:scope => "col"} Edit
       %th{:scope => "col"} Delete
-  %tbody#sortable{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
+  %tbody#sortable-votes{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
     - @matches.each do |match|
       %tr{ id: "match_#{match.id}" }
         %th{:scope => "row"}
@@ -28,3 +28,5 @@
           =link_to 'edit', edit_admin_tournament_match_path(@tournament, match)
         %td
           =link_to 'delete', admin_tournament_match_path(@tournament, match), method: :delete, data: { confirm: 'Are you sure?' }
+
+%button#save-match-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save vote!

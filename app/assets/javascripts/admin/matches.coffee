@@ -1,8 +1,10 @@
 jQuery ->
-  $('#sortable').sortable
+  $('#sortable-votes').sortable
     asix: 'y'
     containment: 'parent'
     cursor: 'move'
     tolerance: 'pointer'
-    update: (event,ui)->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+jQuery ->
+  $('#save-match-order').click ->
+    $.post($('#sortable-votes').data('update-url'), $('#sortable-votes').sortable('serialize'))
+    window.location.href = $(this).data('redirect-url')

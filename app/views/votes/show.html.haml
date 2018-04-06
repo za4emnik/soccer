@@ -9,3 +9,5 @@
     - @players.each do |user|
       %tr{ id: "user_#{user.id}" }
         %td= user.email
+
+%button#save-vote.btn.btn-primary.btn-block{ "data-redirect-url": "#{root_path}" } Save vote!
