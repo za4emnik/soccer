@@ -81,20 +81,16 @@ RSpec.describe Admin::MatchesController, type: :controller do
   end
 
   describe '#update' do
-    let (:match) { FactoryBot.create(:match) }
-    subject { put :update, params: { tournament_id: match.tournament.id, id: match.id, winner: match.first_team.id } }
+    let (:match) { FactoryBot.create(:match, first_team_result: 3, second_team_result: 7) }
+    let (:match_attributes) { FactoryBot.attributes_for(:match, first_team_result: 2, second_team_result: 8) }
+    subject { put :update, params: { tournament_id: match.tournament.id, id: match.id, match: match_attributes } }
 
       context 'when admin' do
         login_admin
 
         it 'should update winner' do
-          expect { subject }.to change{ match.scores.where(team: match.first_team).count }.from(0).to(1)
-        end
-
-        it 'should delete all scores for current match' do
-          match.scores << FactoryBot.create(:score, match: match)
-          subject
-          expect(match.scores.count).to eq(1)
+          expect { subject }.to change{ match.reload.first_team_result }.from(3).to(2)
+                                change{ match.reload.second_team_result }.from(7).to(8)
         end
 
         it_behaves_like 'controller have variables', 'tournament': Tournament

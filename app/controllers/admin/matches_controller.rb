@@ -24,10 +24,8 @@ class Admin::MatchesController < Admin::AdminBaseController
   end
 
   def update
-    @match.scores.delete_all
-    #score = Score.new(match: @match, team_id: params[:winner])
     @match.update_attributes(match_params)
-    redirect_to admin_tournament_matches_path# if score.save
+    redirect_to admin_tournament_matches_path
   end
 
   def destroy

@@ -21,6 +21,6 @@ class User < ApplicationRecord
   private
 
   def generate_rating
-    self.initial_rating = (60 * Rating.average(:rating))/100
+    self.initial_rating = (60 * (Rating.average(:rating) || 2))/100
   end
 end
