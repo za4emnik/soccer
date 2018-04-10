@@ -45,7 +45,7 @@ User.create!(email: 'admin@example31.com', password: '12345678', password_confir
 
   #create 16 teams
   16.times do
-    name = "#{users.first.email}_#{users.second.email}"
+    name = "#{users.first.email}_#{users.second.email}".truncate(29)
     tournament.teams << Team.create!(first_member: users.shift(), second_member: users.shift(), name: name, tournament: tournament)
   end
 

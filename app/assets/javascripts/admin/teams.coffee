@@ -1,25 +1,20 @@
-# jQuery ->
-  # $('#sortable').sortable();
+$ ->
+  $('.teams').sortable(connectWith: '.connectedSortable').disableSelection()
+  return
 
-# $ ->
-  # $('#sortable').sortable revert: true
-  # $('#draggable').draggable
-    # connectToSortable: '#sortable'
-    # helper: 'clone'
-    # revert: 'invalid'
-  # $('ul, li').disableSelection()
-  # return
-
-# jQuery ->
-  # $('#sortable-teams').sortable
-    # asix: 'y'
-    # containment: 'parent'
-    # cursor: 'move'
-    # tolerance: 'pointer'
+getPlayerId = (elem, str) ->
+  $(elem).find(str).attr('id').match(/\d+/g)[0]
 
 $ ->
-  $('#draggable').draggable()
-  $('#droppable').droppable drop: (event, ui) ->
-    $(this).addClass('ui-state-highlight').find('p').html 'Dropped!'
-    return
-  return
+  $('#save-teams-order').click ->
+    condition = true
+    $('.teams').each (item) ->
+     if $(this).find('.team-name').length != 2
+       alert('Teams should be contain only 2 members')
+       condition = false
+    if condition
+      data = { teams: {} }
+      $('.teams').each (item, v) ->
+        data.teams[$(this).attr('id').match(/\d+/g)[0]] = [getPlayerId(v, '.team-name:eq(0)'), getPlayerId(v, '.team-name:eq(1)')]
+      $.post($('#sortable-teams').data('update-url'), data)
+    # window.location.href = $(this).data('redirect-url')

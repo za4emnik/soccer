@@ -1,26 +1,24 @@
 %h2= "Edit teams"
 
 - if @tournament.teams
-  #sortable-teams
+  #sortable-teams{ "data-update-url": "#{update_teams_admin_tournament_teams_path(@tournament)}" }
     - @tournament.teams.each do |team|
       %p= team.name
-      %p= team.first_member.email
-      %p= team.second_member.email
-  -# = form_for @tournament, url: update_teams_admin_tournament_teams_path, method: :put do |f|
-    -# - @tournament.teams.each do |team|
-      -# = fields_for team do |t|
-        -# = fields_for @tournament.users do |u|
-          -# .form-group
-            -# = u.label :first_member, team.first_member.email
-            -# = u.hidden_field team.first_member.id, value: team.id
-          -# .form-group
-            -# = u.label :second_member, team.second_member.email
-            -# = u.hidden_field team.second_member.id, value: team.id
-    -# = f.submit 'Submit', class: "btn btn-default mb-20"
+      %div{ id: "team-#{team.id}", class: 'connectedSortable teams' }
+        %p.team-name{ id: "member-#{team.first_member.id}" }= team.first_member.email
+        %p.team-name{ id: "member-#{team.second_member.id}" }= team.second_member.email
+%button#save-teams-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save
+
+-# = form_for @tournament, url: update_teams_admin_tournament_teams_path, method: :put do |f|
+  -# - @tournament.teams.each do |team|
+    -# = fields_for team do |t|
+      -# = fields_for @tournament.users do |u|
+        -# .form-group
+          -# = u.label :first_member, team.first_member.email
+          -# = u.hidden_field team.first_member.id, value: team.id
+        -# .form-group
+          -# = u.label :second_member, team.second_member.email
+          -# = u.hidden_field team.second_member.id, value: team.id
+  -# = f.submit 'Submit', class: "btn btn-default mb-20"
 -# - else
   -# %p teams not found
-
-#draggable.ui-widget-content
-  %p Drag me to my target
-#droppable.ui-widget-header
-  %p Drop here
