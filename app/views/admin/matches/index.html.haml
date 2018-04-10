@@ -1,5 +1,6 @@
 %h2= "Matches in #{@tournament.name}"
 
+=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
 =link_to 'Generate regular matches', generate_matches_admin_tournament_matches_path, method: :put, class: 'btn btn-default'
 =link_to 'Create new match', new_admin_tournament_match_path, class: 'btn btn-default'
 
@@ -29,4 +30,4 @@
         %td
           =link_to 'delete', admin_tournament_match_path(@tournament, match), method: :delete, data: { confirm: 'Are you sure?' }
 
-%button#save-match-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save vote!
+%button#save-match-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save positions

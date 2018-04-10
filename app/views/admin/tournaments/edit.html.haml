@@ -1,4 +1,6 @@
 %h2 Edit tournament
 
+=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
+
 = form_for @tournament, url: admin_tournament_path(@tournament), method: :put do |f|
   = render partial: 'admin/tournaments/form', locals: {tournament: @tournament, f: f}

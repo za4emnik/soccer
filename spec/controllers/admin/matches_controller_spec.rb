@@ -100,6 +100,24 @@ RSpec.describe Admin::MatchesController, type: :controller do
       it_behaves_like 'guest'
   end
 
+  describe '#destroy' do
+    let! (:match) { FactoryBot.create(:match) }
+    subject { delete :destroy, params: { tournament_id: match.tournament.id, id: match.id } }
+
+      context 'when admin' do
+        login_admin
+
+        it 'should delete match' do
+          expect { subject }.to change{ Match.count }.by(-1)
+        end
+
+        it_behaves_like 'controller have variables', 'tournament': Tournament
+      end
+
+      it_behaves_like 'user on admin page'
+      it_behaves_like 'guest'
+  end
+
   describe '#generate_matches' do
     let (:tournament) { FactoryBot.create(:tournament) }
     subject { put :generate_matches, params: { tournament_id: tournament.id } }

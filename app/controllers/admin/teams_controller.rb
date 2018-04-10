@@ -6,9 +6,6 @@ class Admin::TeamsController < Admin::AdminBaseController
     @teams = Team.with_filter(@tournament.teams, params[:player_search])
   end
 
-  def new
-  end
-
   def destroy
     @tournament.users.delete(User.find(params[:id]))
   end

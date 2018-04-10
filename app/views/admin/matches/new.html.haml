@@ -1,5 +1,7 @@
 %h2 New match for "#{@tournament.name}" tournament
 
+=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
+
 = form_for @match, url: admin_tournament_matches_path, method: :post do |f|
   .form-group{class: add_error_class(@match, :first_team)}
     = f.collection_select(:first_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select first_team', class: "form-control" })

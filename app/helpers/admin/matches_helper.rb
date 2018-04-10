@@ -1,7 +1,6 @@
 module Admin::MatchesHelper
 
   def winner?(match, team)
-    # match.scores.where(team: team).first.present?
     team_number = get_team_number(match, team)
     win?(match, team_number)
   end

@@ -5,15 +5,6 @@ class Admin::TournamentsController < Admin::AdminBaseController
     @tournaments = Tournament.with_filter(Tournament.all, params[:tournament_search])
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
   def create
     if @tournament.save
       redirect_to admin_tournaments_path

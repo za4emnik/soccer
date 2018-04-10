@@ -1,8 +1,10 @@
 %h2= "Add members to #{@tournament.name}"
 
+=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
+
 = form_for @tournament, url: update_list_of_players_admin_tournament_players_path, method: :put do |f|
   - @users.each do |user|
     .form-group
-      = check_box_tag "users_ids[]", user.id, @tournament.users.ids.include?(user.id) 
+      = check_box_tag "users_ids[]", user.id, @tournament.users.ids.include?(user.id)
       = f.label :email, user.email, class: "control-label input-label"
   = f.submit 'Submit', class: "btn btn-default mb-20"

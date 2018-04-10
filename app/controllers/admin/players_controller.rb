@@ -2,9 +2,6 @@ class Admin::PlayersController < Admin::AdminBaseController
   load_and_authorize_resource :tournament
   load_and_authorize_resource :user, through: :tournament
 
-  def index
-  end
-
   def new
     @users = User.all
   end
