@@ -63,8 +63,10 @@ RSpec.describe GenerateTeamsService do
   context '#generate_team_name' do
     let (:first_member) { FactoryBot.create(:user, email: 's@s.s') }
     let (:second_member) { FactoryBot.create(:user, email: 'w@w.w') }
-    subject { GenerateTeamsService.new(FactoryBot.create(:tournament))
-                                  .generate_team_name(first_member, second_member) }
+    subject do
+      GenerateTeamsService.new(FactoryBot.create(:tournament))
+                          .generate_team_name(first_member, second_member)
+    end
 
     it 'should return generated name' do
       expect(subject).to eq('s@s.s_w@w.w')
@@ -93,7 +95,7 @@ RSpec.describe GenerateTeamsService do
     subject { GenerateTeamsService.new(tournament).create_team('name', first_palyer, second_player) }
 
     it 'should create team' do
-      expect { subject }.to change{ Team.count }.by(1)
+      expect { subject }.to change { Team.count }.by(1)
     end
 
     it 'should create team with passed params' do

@@ -18,8 +18,8 @@ RSpec.describe Ability, type: :model do
 
       it { should be_able_to(:read, Tournament, Match, Team, User) }
       it { should be_able_to(:read, vote) }
-      it { should be_able_to([:edit, :update], team_first) }
-      it { should be_able_to([:edit, :update], team_second) }
+      it { should be_able_to(%i[edit update], team_first) }
+      it { should be_able_to(%i[edit update], team_second) }
     end
   end
 end

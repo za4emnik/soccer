@@ -1,6 +1,6 @@
 class Match < ApplicationRecord
   acts_as_list scope: :tournament
-  enum match_type: [ :regular, :one_eight, :one_four, :one_two, :third_place, :final ]
+  enum match_type: %i[regular one_eight one_four one_two third_place final]
 
   validates :first_team, :second_team, presence: true
   validates :first_team_result, :second_team_result, numericality: { less_than: 11 }, on: :update

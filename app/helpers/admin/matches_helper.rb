@@ -1,5 +1,4 @@
 module Admin::MatchesHelper
-
   def winner?(match, team)
     team_number = get_team_number(match, team)
     win?(match, team_number)
@@ -10,7 +9,7 @@ module Admin::MatchesHelper
       match.first_team.name
     elsif win?(match, 'second_team')
       match.second_team.name
-    elsif win?(match, 'second_team') == nil
+    elsif win?(match, 'second_team').nil?
       'not played yet'
     else
       'dead heat'

@@ -2,7 +2,7 @@ class MatchesQuery
   attr_reader :relation
 
   def initialize(relation = Match.all)
-   @relation = relation
+    @relation = relation
   end
 
   def with_filter(filter)
@@ -27,10 +27,10 @@ class MatchesQuery
   end
 
   def with_teams
-    @relation.joins("LEFT JOIN teams ON matches.first_team_id = teams.id OR matches.second_team_id = teams.id")
+    @relation.joins('LEFT JOIN teams ON matches.first_team_id = teams.id OR matches.second_team_id = teams.id')
   end
 
   def with_users
-    with_teams.joins("RIGHT JOIN users ON teams.first_member_id = users.id OR teams.second_member_id = users.id")
+    with_teams.joins('RIGHT JOIN users ON teams.first_member_id = users.id OR teams.second_member_id = users.id')
   end
 end

@@ -3,7 +3,7 @@ class VotesController < ApplicationController
 
   def show
     authorize! :read, @tournament.vote
-    @players = @tournament.users.joins("LEFT JOIN vote_items ON (vote_items.vote_user_id = users.id AND vote_items.vote_id = #{@tournament.vote.id} AND vote_items.user_id = #{current_user.id})").order('vote_items.value DESC')
+    @players = @tournament.users.with_vote_items(current_user, @tournament)
   end
 
   def sort

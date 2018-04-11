@@ -1,0 +1,21 @@
+AllCops:
+  TargetRubyVersion: 2.3.1
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 30
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 37

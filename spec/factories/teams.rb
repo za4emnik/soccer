@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name "command"
+    name 'command'
     association :first_member, factory: :user
     association :second_member, factory: :user
     association :tournament

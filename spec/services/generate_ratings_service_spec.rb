@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GenerateRatingsService do
-
   context '#initialize' do
     let(:vote) { FactoryBot.create(:vote) }
     subject { GenerateRatingsService.new(vote) }
@@ -102,7 +101,7 @@ RSpec.describe GenerateRatingsService do
 
     it 'should create rating for user in tournament' do
       user = vote.vote_items.first.user
-      expect{ subject.create_rating_for(user) }.to change{ user.ratings.where(tournament: tournament).count }.from(0).to(1)
+      expect { subject.create_rating_for(user) }.to change { user.ratings.where(tournament: tournament).count }.from(0).to(1)
     end
 
     it_behaves_like 'controller have variables', 'vote': Vote, 'tournament': Tournament,

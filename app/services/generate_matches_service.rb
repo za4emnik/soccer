@@ -5,9 +5,9 @@ class GenerateMatchesService
   end
 
   def generate
-    remove_matches()
-    shuffle_teams()
-    create_regular_matches()
+    remove_matches
+    shuffle_teams
+    create_regular_matches
     @tournament.processed! if @tournament.new?
   end
 
@@ -16,9 +16,9 @@ class GenerateMatchesService
   end
 
   def create_regular_matches
-    get_number_of_regular_matches.times do
-      first_team = @teams.shift()
-      second_team = @teams.shift()
+    number_of_regular_matches.times do
+      first_team = @teams.shift
+      second_team = @teams.shift
       @tournament.number_of_rounds.times { create_match(first_team, second_team) }
     end
   end
@@ -31,10 +31,10 @@ class GenerateMatchesService
   end
 
   def shuffle_teams
-    @teams = @teams.shuffle()
+    @teams = @teams.shuffle
   end
 
-  def get_number_of_regular_matches
+  def number_of_regular_matches
     (@tournament.teams.count / 2).to_i
   end
 end

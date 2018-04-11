@@ -1,6 +1,6 @@
 class Admin::MatchesController < Admin::AdminBaseController
   load_and_authorize_resource :tournament
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: %i[show edit update destroy]
 
   def index
     @matches = Match.with_filter(@tournament.matches, params[:match_search])
@@ -35,13 +35,13 @@ class Admin::MatchesController < Admin::AdminBaseController
 
   def generate_matches
     service_generator = GenerateMatchesService.new(@tournament)
-    service_generator.generate()
+    service_generator.generate
     redirect_to admin_tournament_matches_path
   end
 
   def sort
     params[:match].each_with_index do |id, index|
-      Match.where(id: id).update_all(position: index+1)
+      Match.where(id: id).update_all(position: index + 1)
     end
   end
 

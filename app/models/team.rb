@@ -1,5 +1,4 @@
 class Team < ApplicationRecord
-
   validates :name, :first_member, :second_member, :tournament, presence: true
   validates :name, length: { minimum: 3, maximum: 30 }
 

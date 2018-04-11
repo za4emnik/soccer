@@ -8,29 +8,28 @@ end
 gem 'aasm'
 gem 'acts_as_list'
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 4.2'
-gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.5'
-gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
-gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'fog-aws'
 gem 'friendly_id', '~> 5.1.0'
 gem 'haml'
+gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'pg'
+gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.1.5'
 gem 'rectify'
 gem 'require_all'
-gem 'jquery-ui-rails'
+gem 'sass-rails', '~> 5.0'
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -55,4 +54,4 @@ group :test do
   gem 'shoulda-matchers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

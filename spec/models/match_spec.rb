@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
-
   describe 'enum' do
     it do
-      should define_enum_for(:match_type).
-        with([:regular, :one_eight, :one_four, :one_two, :third_place, :final])
+      should define_enum_for(:match_type)
+        .with(%i[regular one_eight one_four one_two third_place final])
     end
   end
 

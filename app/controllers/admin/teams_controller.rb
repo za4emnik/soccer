@@ -13,7 +13,7 @@ class Admin::TeamsController < Admin::AdminBaseController
   def generate_teams
     check_players
     service = GenerateTeamsService.new(@tournament)
-    service.generate()
+    service.generate
     redirect_to admin_tournament_teams_path
   end
 
@@ -49,12 +49,12 @@ class Admin::TeamsController < Admin::AdminBaseController
 
   def players_ready?(teams)
     users = (@tournament.users.ids - teams.values.flatten.map(&:to_i)).empty?
-    count_players = teams.values.size*2 == teams.values.flatten.uniq.size
+    count_players = teams.values.size * 2 == teams.values.flatten.uniq.size
     users && count_players
   end
 
   def check_players
-    if @tournament.users.count % 2 > 0
+    if (@tournament.users.count % 2).positive?
       flash[:notice] = 'Can\'t generate teams.
                         Number of players should be a multiple of 2.'
       redirect_to admin_tournament_teams_path

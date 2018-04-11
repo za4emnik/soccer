@@ -7,8 +7,8 @@ FactoryBot.define do
     first_team_result first_value
     second_team_result second_value
     association :tournament
-    match_type "regular"
+    match_type 'regular'
     position 1
-    aasm_state "MyString"
+    aasm_state 'MyString'
   end
 end

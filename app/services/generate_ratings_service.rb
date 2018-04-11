@@ -1,6 +1,5 @@
 class GenerateRatingsService
-
-  def initialize(vote, args = {})
+  def initialize(vote, _args = {})
     @vote = vote
     @tournament = vote.tournament
     @users = @tournament&.users

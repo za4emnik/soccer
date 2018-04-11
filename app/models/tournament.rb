@@ -27,7 +27,7 @@ class Tournament < ApplicationRecord
   end
 
   def self.with_filter(relation, filter)
-    relation = relation.where("name LIKE ?", "%#{filter[:search]}%") if filter&.[](:search)
+    relation = relation.where('name LIKE ?', "%#{filter[:search]}%") if filter&.[](:search)
     relation = relation.where(aasm_state: filter[:type]) if filter&.[](:type).present?
     relation = relation.order(:id)
     relation

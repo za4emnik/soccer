@@ -1,5 +1,4 @@
 RSpec.shared_examples 'redirect to' do |path|
-
   before do
     subject
   end

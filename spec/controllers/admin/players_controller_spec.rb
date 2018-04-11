@@ -5,29 +5,29 @@ RSpec.describe Admin::PlayersController, type: :controller do
     let (:tournament) { FactoryBot.create(:tournament) }
     subject { get :index, params: { tournament_id: tournament.id } }
 
-      context 'when admin' do
-        login_admin
+    context 'when admin' do
+      login_admin
 
-        it_behaves_like 'controller have variables', 'tournament': Tournament
-      end
+      it_behaves_like 'controller have variables', 'tournament': Tournament
+    end
 
-      it_behaves_like 'user on admin page'
-      it_behaves_like 'guest'
+    it_behaves_like 'user on admin page'
+    it_behaves_like 'guest'
   end
 
   describe '#new' do
     let (:tournament) { FactoryBot.create(:tournament) }
     subject { get :new, params: { tournament_id: tournament.id } }
 
-      context 'when admin' do
-        login_admin
+    context 'when admin' do
+      login_admin
 
-        it_behaves_like 'controller have variables', 'tournament': Tournament,
-                                                     'users': ActiveRecord::Relation
-      end
+      it_behaves_like 'controller have variables', 'tournament': Tournament,
+                                                   'users': ActiveRecord::Relation
+    end
 
-      it_behaves_like 'user on admin page'
-      it_behaves_like 'guest'
+    it_behaves_like 'user on admin page'
+    it_behaves_like 'guest'
   end
 
   describe '#destroy' do
@@ -39,18 +39,18 @@ RSpec.describe Admin::PlayersController, type: :controller do
       tournament.users << user
     end
 
-      context 'when admin' do
-        login_admin
+    context 'when admin' do
+      login_admin
 
-        it 'should delete user from current tournament' do
-          expect{ subject }.to change{ tournament.users.count }.from(1).to(0)
-        end
-
-        it_behaves_like 'controller have variables', 'tournament': Tournament
+      it 'should delete user from current tournament' do
+        expect { subject }.to change { tournament.users.count }.from(1).to(0)
       end
 
-      it_behaves_like 'user on admin page'
-      it_behaves_like 'guest'
+      it_behaves_like 'controller have variables', 'tournament': Tournament
+    end
+
+    it_behaves_like 'user on admin page'
+    it_behaves_like 'guest'
   end
 
   describe '#update_list_of_players' do
@@ -58,17 +58,17 @@ RSpec.describe Admin::PlayersController, type: :controller do
     let (:array_of_users) { [FactoryBot.create(:user).id, FactoryBot.create(:user).id] }
     subject { put :update_list_of_players, params: { tournament_id: tournament.id, users_ids: array_of_users } }
 
-      context 'when admin' do
-        login_admin
+    context 'when admin' do
+      login_admin
 
-        it 'should assign users to curernt tournament' do
-          expect{ subject }.to change{ tournament.users.count }.from(0).to(2)
-        end
-
-        it_behaves_like 'controller have variables', 'tournament': Tournament
+      it 'should assign users to curernt tournament' do
+        expect { subject }.to change { tournament.users.count }.from(0).to(2)
       end
 
-      it_behaves_like 'user on admin page'
-      it_behaves_like 'guest'
+      it_behaves_like 'controller have variables', 'tournament': Tournament
+    end
+
+    it_behaves_like 'user on admin page'
+    it_behaves_like 'guest'
   end
 end

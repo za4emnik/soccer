@@ -1,5 +1,4 @@
 class TournamentsController < ApplicationController
-
   def index
     @tournaments = Tournament.with_filter(Tournament.all, params[:tournament_search])
   end

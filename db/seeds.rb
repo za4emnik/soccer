@@ -31,29 +31,28 @@ User.create!(email: 'admin@example29.com', password: '12345678', password_confir
 User.create!(email: 'admin@example30.com', password: '12345678', password_confirmation: '12345678')
 User.create!(email: 'admin@example31.com', password: '12345678', password_confirmation: '12345678')
 
-
 3.times do
-  #create tournament
+  # create tournament
   tournament = Tournament.create!(name: 'New tournament', number_of_rounds: 3, aasm_state: 'in_process')
 
-  #create ratings for 32 users and assign 32 users to tournament
+  # create ratings for 32 users and assign 32 users to tournament
   users = User.first(32)
   users.each do |user|
     user.ratings << Rating.create!(tournament: tournament, user: user, rating: rand(0..5))
     tournament.users << user
   end
 
-  #create 16 teams
+  # create 16 teams
   16.times do
     name = "#{users.first.email}_#{users.second.email}".truncate(29)
-    tournament.teams << Team.create!(first_member: users.shift(), second_member: users.shift(), name: name, tournament: tournament)
+    tournament.teams << Team.create!(first_member: users.shift, second_member: users.shift, name: name, tournament: tournament)
   end
 
-  #create matches for 16 teams (8 matches * rounds) with scores
+  # create matches for 16 teams (8 matches * rounds) with scores
   teams = tournament.teams.to_a
   8.times do
-    first_team = teams.shift()
-    second_team = teams.shift()
+    first_team = teams.shift
+    second_team = teams.shift
     teams_array = [first_team, second_team]
     tournament.number_of_rounds.times do
       first_team_result = rand(0..10)
