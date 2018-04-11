@@ -21,7 +21,7 @@
         %td= team.wins
         %td= team.defeats
         %td= "#{team.scoring_goals} - #{team.conceded_goals}"
-        %td= team.scoring_goals - team.conceded_goals
+        %td= team.scoring_goals&.- team.conceded_goals
         %td= team.wins * Match.points_for_victory
 
 %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "font-size: 90%; margin:1em 2em 1em 1em; border-collapse: unset"}
