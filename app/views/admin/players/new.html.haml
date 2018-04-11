@@ -2,9 +2,31 @@
 
 =link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
 
-= form_for @tournament, url: update_list_of_players_admin_tournament_players_path, method: :put do |f|
-  - @users.each do |user|
-    .form-group
-      = check_box_tag "users_ids[]", user.id, @tournament.users.ids.include?(user.id)
-      = f.label :email, user.email, class: "control-label input-label"
-  = f.submit 'Submit', class: "btn btn-default mb-20"
+%p= "You added #{@tournament.users.count} players"
+
+-# = form_for @tournament, url: update_list_of_players_admin_tournament_players_path, method: :put do |f|
+  -# - @users.each do |user|
+    -# .form-group
+      -# = check_box_tag "users_ids[]", user.id, @tournament.users.ids.include?(user.id)
+      -# = f.label :email, user.email, class: "control-label input-label"
+  -# = f.submit 'Submit', class: "btn btn-default mb-20"
+- if @players
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} Email
+        %th{:scope => "col"} Action
+    %tbody#players-table
+    - @players.each do |user|
+      %tr
+        %td= user.email
+        - if @tournament.users.include?(user)
+          %td
+            =link_to 'delete', admin_tournament_player_path(@tournament, user.id), method: :delete
+        - else
+          %td
+            =link_to 'add', admin_tournament_players_path(@tournament, player_id: user.id), method: :post
+- else
+  %p players not found
+- if @players
+  = paginate @players

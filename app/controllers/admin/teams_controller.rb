@@ -11,9 +11,13 @@ class Admin::TeamsController < Admin::AdminBaseController
   end
 
   def generate_teams
-    check_players
-    service = GenerateTeamsService.new(@tournament)
-    service.generate
+    if (@tournament.users.count % 2).positive?
+      flash[:notice] = 'Can\'t generate teams.
+                        Number of players should be a multiple of 2.'
+    else
+      service = GenerateTeamsService.new(@tournament)
+      service.generate
+    end
     redirect_to admin_tournament_teams_path
   end
 
@@ -22,7 +26,8 @@ class Admin::TeamsController < Admin::AdminBaseController
       update_teams_players(params[:teams])
       redirect_to admin_tournament_teams_path
     else
-      flash[:notice] = 'Can\'t update teams. Teams should be contain 2 players'
+      flash[:notice] = 'Can\'t update teams. Teams should be contain 2 players or
+                       some players are not present in tournament. Check players.'
       redirect_to edit_teams_admin_tournament_teams_path
     end
   end
@@ -59,5 +64,9 @@ class Admin::TeamsController < Admin::AdminBaseController
                         Number of players should be a multiple of 2.'
       redirect_to admin_tournament_teams_path
     end
+  end
+
+  def users_even?
+     (@tournament.users.count % 2).positive?
   end
 end

@@ -21,8 +21,8 @@
       %tr{ id: "match_#{match.id}" }
         %th{:scope => "row"}
           =link_to match.id, admin_tournament_match_path(@tournament, match)
-        %td= match.first_team.name
-        %td= match.second_team.name
+        %td= match.first_team&.name
+        %td= match.second_team&.name
         %td= winner(match)
         %td= match.match_type
         %td

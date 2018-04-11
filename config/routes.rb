@@ -23,9 +23,9 @@ Rails.application.routes.draw do
         post 'update_teams', on: :collection
         get 'edit_teams', on: :collection
       end
-      resources :players, only: %i[index new destroy] do
-        put 'update_list_of_players', on: :collection
-      end
+      resources :players, only: %i[index new create destroy]# do
+        # put 'update_list_of_players', on: :collection
+      # end
       resources :matches do
         put 'generate_matches', on: :collection
         post 'sort', on: :collection

@@ -4,8 +4,12 @@
       %a.navbar-brand{:href => "/"} Soccer
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
-          = link_to 'Tournaments', tournaments_path
+        - if current_user
+          %li
+            = link_to 'Tournaments', tournaments_path
+        - if current_user&.is_admin?
+          %li
+            = link_to 'Administration page', admin_root_path
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           Hello, #{ current_user.email }

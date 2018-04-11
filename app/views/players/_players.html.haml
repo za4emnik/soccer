@@ -1,0 +1,15 @@
+- if players
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Email
+    %tbody#players-table
+    - players.each do |user|
+      %tr
+        %th{:scope => "row"}= user.id
+        %td= user.email
+- else
+  %p players not found
+- if players
+  = paginate players

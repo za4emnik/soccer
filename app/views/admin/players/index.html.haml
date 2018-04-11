@@ -3,19 +3,7 @@
 =link_to 'add members', new_admin_tournament_player_path, class: 'btn btn-default'
 =link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
 
-- if @tournament.users
-  %table.table.table-hover
-    %thead
-      %tr
-        %th{:scope => "col"} #
-        %th{:scope => "col"} Email
-        %th{:scope => "col"} Delete
-    %tbody
-    - @tournament.users.each do |user|
-      %tr
-        %th{:scope => "row"}= user.id
-        %td= user.email
-        %td
-          =link_to 'delete', admin_tournament_player_path(@tournament, user.id), method: :delete, data: { confirm: 'Are you sure?' }
-- else
-  %p players not found
+%p= "You added #{@tournament.users.count} players"
+
+= render partial: 'admin/players/filter_players', locals: { action: admin_tournament_players_path(@tournament) }
+= render partial: '/players/players', locals: { tournament: @tournament, players: @players }

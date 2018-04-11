@@ -22,8 +22,7 @@ RSpec.describe Admin::PlayersController, type: :controller do
     context 'when admin' do
       login_admin
 
-      it_behaves_like 'controller have variables', 'tournament': Tournament,
-                                                   'users': ActiveRecord::Relation
+      it_behaves_like 'controller have variables', 'players': ActiveRecord::Relation
     end
 
     it_behaves_like 'user on admin page'
@@ -53,16 +52,26 @@ RSpec.describe Admin::PlayersController, type: :controller do
     it_behaves_like 'guest'
   end
 
-  describe '#update_list_of_players' do
+  describe '#create' do
     let (:tournament) { FactoryBot.create(:tournament) }
-    let (:array_of_users) { [FactoryBot.create(:user).id, FactoryBot.create(:user).id] }
-    subject { put :update_list_of_players, params: { tournament_id: tournament.id, users_ids: array_of_users } }
+    let (:user) { FactoryBot.create(:user) }
+    subject { post :create, params: { tournament_id: tournament.id, player_id: user.id } }
 
     context 'when admin' do
       login_admin
 
-      it 'should assign users to curernt tournament' do
-        expect { subject }.to change { tournament.users.count }.from(0).to(2)
+      it 'should change number of users in tournament' do
+        expect { subject }.to change { tournament.users.count }.from(0).to(1)
+      end
+
+      it 'should assign user to curernt tournament' do
+        subject
+        expect(tournament.users.first).to eq(user)
+      end
+
+      it 'should not assign user if user exist' do
+        tournament.users << user
+        expect { subject }.not_to change { tournament.users.count }
       end
 
       it_behaves_like 'controller have variables', 'tournament': Tournament
@@ -71,4 +80,23 @@ RSpec.describe Admin::PlayersController, type: :controller do
     it_behaves_like 'user on admin page'
     it_behaves_like 'guest'
   end
+
+  # describe '#update_list_of_players' do
+    # let (:tournament) { FactoryBot.create(:tournament) }
+    # let (:array_of_users) { [FactoryBot.create(:user).id, FactoryBot.create(:user).id] }
+    # subject { put :update_list_of_players, params: { tournament_id: tournament.id, users_ids: array_of_users } }
+
+    # context 'when admin' do
+      # login_admin
+
+      # it 'should assign users to curernt tournament' do
+        # expect { subject }.to change { tournament.users.count }.from(0).to(2)
+      # end
+
+      # it_behaves_like 'controller have variables', 'tournament': Tournament
+    # end
+
+    # it_behaves_like 'user on admin page'
+    # it_behaves_like 'guest'
+  # end
 end

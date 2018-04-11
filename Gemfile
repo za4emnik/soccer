@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.5.0"
+ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -18,6 +18,7 @@ gem 'dotenv-rails'
 gem 'fog-aws'
 gem 'friendly_id', '~> 5.1.0'
 gem 'haml'
+gem 'kaminari'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

@@ -1,0 +1,6 @@
+= form_tag action, method: :get, class: 'form-inline' do
+  = fields_for 'player_search' do |s|
+    .form-group
+      = s.label 'Name'
+      = s.text_field :name, class: 'form-control', value: params&.[](:player_search)&.[](:name)
+  = submit_tag 'Submit', class: "btn btn-default mb-20"
