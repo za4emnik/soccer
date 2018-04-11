@@ -2,6 +2,7 @@
   "name": "soccer",
   "private": true,
   "dependencies": {
+    "@rails/webpacker": "3.4",
     "bootstrap": "^4.0.0",
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.3.1"
@@ -10,5 +11,8 @@
   "main": "index.js",
   "repository": "https://github.com/za4emnik/soccer.git",
   "author": "Maxim <maxots@rambler.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
