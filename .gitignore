@@ -19,7 +19,7 @@
 
 # Ignore config files
 /config/database.yml
-/config/secrets.yml
+#/config/secrets.yml
 .env
 
 # Ignore yarn files
