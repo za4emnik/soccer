@@ -3,6 +3,7 @@ jQuery ->
     asix: 'y'
     containment: 'parent'
     cursor: 'move'
+    refreshPositions: true
     tolerance: 'pointer'
 jQuery ->
   $('#save-match-order').click ->

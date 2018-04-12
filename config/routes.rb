@@ -8,24 +8,22 @@ Rails.application.routes.draw do
       post 'sort', on: :member
     end
     resources :teams, only: %i[index edit update show]
-    resources :players, only: [:index]
+    resources :players, only: :index
     resources :matches, only: %i[index show]
   end
 
   namespace :admin do
-    root 'admin_home#index'
+    root 'tournaments#index'
     resources :admin
     resources :tournaments do
       post 'done', on: :member
       resources :votes, only: :update
-      resources :teams, except: %i[show] do
+      resources :teams, except: :show do
         put 'generate_teams', on: :collection
         post 'update_teams', on: :collection
         get 'edit_teams', on: :collection
       end
-      resources :players, only: %i[index new create destroy]# do
-        # put 'update_list_of_players', on: :collection
-      # end
+      resources :players, only: %i[index new create destroy]
       resources :matches do
         put 'generate_matches', on: :collection
         post 'sort', on: :collection

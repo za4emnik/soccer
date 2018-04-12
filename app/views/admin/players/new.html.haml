@@ -5,7 +5,7 @@
     =link_to admin_tournament_players_path(@tournament), class: 'btn btn-default' do
       =fa_icon "caret-left", text: "Players", right: false
   .pull-right
-    =fa_icon "user", text: "#{@tournament.users.count}", right: true
+    %span.badge.badge-info= fa_icon "user", text: "#{@tournament.users.count}", right: true
 
 = render partial: 'admin/players/filter_players', locals: { action: new_admin_tournament_player_path }
 

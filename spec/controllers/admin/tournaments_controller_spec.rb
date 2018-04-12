@@ -124,7 +124,9 @@ RSpec.describe Admin::TournamentsController, type: :controller do
         expect { subject }.to change { tournament.reload.aasm_state }.to('completed')
       end
 
-      it_behaves_like 'redirect to', 'admin_tournaments_path'
+      it_behaves_like 'redirect to' do
+        let(:params) { admin_tournament_path(tournament) }
+      end
     end
 
     it_behaves_like 'user on admin page'

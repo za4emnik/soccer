@@ -13,7 +13,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       end
 
       it 'should redirect to admin tournaments' do
-        expect(subject).to redirect_to(admin_tournaments_path)
+        expect(subject).to redirect_to(admin_tournament_path(vote.tournament))
       end
 
       it_behaves_like 'controller have variables', 'tournament': Tournament

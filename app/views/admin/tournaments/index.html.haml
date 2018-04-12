@@ -1,11 +1,13 @@
 %h2 Tournaments
 
-= render partial: '/tournaments/filter', locals: {action: admin_tournaments_path}
+=link_to 'Create new Tournament', new_admin_tournament_path, class: 'btn btn-default'
+
+.top-buffer
+  = render partial: '/tournaments/filter', locals: {action: admin_tournaments_path}
 
 %table.table.table-hover
   %thead
     %tr
-      %th{:scope => "col"} #
       %th{:scope => "col"} Name
       %th{:scope => "col"} Rounds
       %th{:scope => "col"} Players
@@ -19,7 +21,6 @@
   %tbody
     - @tournaments.each do |tournament|
       %tr
-        %th{:scope => "row"}= tournament.id
         %td
           = link_to tournament.name, admin_tournament_path(tournament)
         %td= tournament.number_of_rounds

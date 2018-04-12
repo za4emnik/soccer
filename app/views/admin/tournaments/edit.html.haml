@@ -2,8 +2,8 @@
 
 .row
   .pull-left
-    =link_to admin_tournaments_path, class: 'btn btn-default' do
-      =fa_icon "caret-left", text: "Tournaments", right: false
+    =link_to admin_tournament_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Tournament", right: false
 
 .row
   = form_for @tournament, url: admin_tournament_path(@tournament), method: :put do |f|

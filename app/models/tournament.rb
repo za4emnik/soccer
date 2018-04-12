@@ -12,6 +12,8 @@ class Tournament < ApplicationRecord
 
   default_scope { includes(:users, :vote) }
 
+  before_destroy :destroy_ratings
+
   aasm do
     state :new, initial: true
     state :in_process
@@ -37,5 +39,9 @@ class Tournament < ApplicationRecord
 
   def create_vote
     Vote.create!(tournament: self)
+  end
+
+  def destroy_ratings
+    Rating.where(tournament: self).delete_all
   end
 end

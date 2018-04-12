@@ -3,15 +3,12 @@
 %table.table.table-hover
   %thead
     %tr
-      %th{:scope => "col"} #
       %th{:scope => "col"} Team#1
       %th{:scope => "col"} Team#2
       %th{:scope => "col"} Type
   %tbody#sortable{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
     - @matches.each do |match|
       %tr{ id: "match_#{match.id}" }
-        %th{:scope => "row"}
-          =link_to match.id, tournament_match_path(@tournament, match)
         %td= match.first_team.name
         %td= match.second_team.name
         %td= match.match_type

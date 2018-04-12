@@ -1,4 +1,8 @@
 %h2 Create new Tournament
 
+
+=link_to admin_tournaments_path, class: 'btn btn-default' do
+  =fa_icon "caret-left", text: "Tournaments", right: false
+
 = form_for @tournament, url: admin_tournaments_path, method: :post do |f|
   = render partial: 'admin/tournaments/form', locals: {tournament: @tournament, f: f}

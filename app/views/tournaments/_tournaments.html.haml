@@ -1,7 +1,6 @@
 %table.table.table-hover
   %thead
     %tr
-      %th{:scope => "col"} #
       %th{:scope => "col"} Name
       %th{:scope => "col"} Rounds
       %th{:scope => "col"} Players
@@ -12,7 +11,6 @@
     - if tournaments
       - tournaments.each do |tournament|
         %tr
-          %th{:scope => "row"}= tournament.id
           %td
             = link_to tournament.name, tournament_path(tournament)
           %td= tournament.number_of_rounds

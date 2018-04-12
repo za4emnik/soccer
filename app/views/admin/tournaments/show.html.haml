@@ -4,6 +4,25 @@
   .pull-left
     =link_to admin_tournaments_path, class: 'btn btn-default' do
       =fa_icon "caret-left", text: "Tournaments", right: false
+    =link_to edit_admin_tournament_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "edit", text: "Edit", right: false
+    - if @tournament.in_process?
+      =link_to done_admin_tournament_path(@tournament), method: :post, class: 'btn btn-default' do
+        =fa_icon "flag-checkered", text: "Done!", right: false
+    - if @tournament.vote&.new?
+      =link_to admin_tournament_vote_path(@tournament, @tournament.vote), method: :patch, class: 'btn btn-default' do
+        =fa_icon "times", text: "Close Vote", right: false
+  .pull-right
+    =link_to admin_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' do
+      =fa_icon "trash-o", text: "Remove tournament", right: false
+.row.top-buffer
+  .pull-left
+    =link_to admin_tournament_players_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "user", text: "Players", right: false
+    =link_to admin_tournament_teams_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "users", text: "Teams", right: false
+    =link_to admin_tournament_matches_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "gamepad", text: "Matches", right: false
 
 .row.top-buffer
   %span name:

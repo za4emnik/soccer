@@ -4,6 +4,7 @@ RSpec.shared_examples 'redirect to' do |path|
   end
 
   it "should redirect to #{path}" do
-    expect(subject).to redirect_to(send(path))
+    url = path ? send(path) : params
+    expect(subject).to redirect_to(url)
   end
 end

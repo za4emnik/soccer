@@ -4,10 +4,10 @@
 
 .row
   .pull-left
-    =link_to admin_tournaments_path, class: 'btn btn-default' do
-      =fa_icon "caret-left", text: "Tournaments", right: false
+    =link_to admin_tournament_path(@tournament), class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Tournament", right: false
     =link_to generate_teams_admin_tournament_teams_path, method: :put, class: 'btn btn-default' do
-      =fa_icon "cogs", text: 'Generate commands', right: false
+      =fa_icon "cogs", text: 'Generate teams', right: false
     =link_to edit_teams_admin_tournament_teams_path, class: 'btn btn-default' do
       =fa_icon "edit", text: 'Edit commands', right: false
     =link_to new_admin_tournament_team_path, class: 'btn btn-default' do
@@ -21,7 +21,6 @@
     %table.table.table-hover
       %thead
         %tr
-          %th{:scope => "col"} #
           %th{:scope => "col"} Team
           %th{:scope => "col"} First member
           %th{:scope => "col"} Second member
@@ -30,7 +29,6 @@
       %tbody
       - @teams.each do |team|
         %tr
-          %th{:scope => "row"}= team.id
           %td= team.name
           %td= team.first_member.email
           %td= team.second_member.email

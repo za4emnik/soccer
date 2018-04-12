@@ -3,6 +3,6 @@ class Admin::VotesController < Admin::AdminBaseController
 
   def update
     @tournament.vote.close!
-    redirect_to admin_tournaments_path
+    redirect_to admin_tournament_path(@tournament)
   end
 end

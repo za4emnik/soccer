@@ -15,7 +15,7 @@ class Admin::TournamentsController < Admin::AdminBaseController
 
   def update
     if @tournament.update_attributes(tournament_params)
-      redirect_to admin_tournaments_path
+      redirect_to admin_tournament_path
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::TournamentsController < Admin::AdminBaseController
 
   def done
     @tournament.complete!
-    redirect_to admin_tournaments_path
+    redirect_to admin_tournament_path
   end
 
   private
