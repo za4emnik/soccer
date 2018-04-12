@@ -1,10 +1,5 @@
 %h2= "Information by #{@user.email}"
 
-= form_tag root_path, method: :get, class: 'form-inline' do
-  .form-group
-    = text_field_tag :search
-    = submit_tag 'Submit', class: "btn btn-default mb-20"
-
 %h2 Tournaments
 = render partial: '/tournaments/tournaments', locals: {tournaments: @user.tournaments}
 

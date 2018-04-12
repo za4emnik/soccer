@@ -1,9 +1,15 @@
 %h2= "Participants of #{@tournament.name} tournament"
 
-=link_to 'add members', new_admin_tournament_player_path, class: 'btn btn-default'
-=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
-
-%p= "You added #{@tournament.users.count} players"
+.row
+  .pull-left
+    =link_to admin_tournaments_path, class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Tournaments", right: false
+    =link_to new_admin_tournament_player_path, class: 'btn btn-default' do
+      =fa_icon "user-plus", text: 'Add members', right: false
+  .pull-right
+    =fa_icon "user", text: "#{@tournament.users.count}", right: true
 
 = render partial: 'admin/players/filter_players', locals: { action: admin_tournament_players_path(@tournament) }
-= render partial: '/players/players', locals: { tournament: @tournament, players: @players }
+
+.row
+  = render partial: '/players/players', locals: { tournament: @tournament, players: @players }

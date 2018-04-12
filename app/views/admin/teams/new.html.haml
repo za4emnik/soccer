@@ -1,0 +1,22 @@
+%h2= "Create new team"
+
+%p= flash&.[](notice)
+
+.row
+  .pull-left
+    =link_to admin_tournament_teams_path, class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Teams", right: false
+
+.row.top-buffer
+  = form_for @team, url: admin_tournament_teams_path, method: :post do |f|
+    .form-group{class: add_error_class(@team, :name)}
+      = f.label :name, class: "control-label input-label"
+      = f.text_field :name, class: "form-control"
+      .span.help-block= show_errors(@team, :name)
+    .form-group{class: add_error_class(@team, :first_member)}
+      = f.collection_select(:first_member_id, @tournament.users, :id, :email, { :prompt => 'Please select first player'}, {class: "form-control" })
+      .span.help-block= show_errors(@team, :first_member)
+    .form-group{class: add_error_class(@team, :second_member)}
+      = f.collection_select(:second_member_id, @tournament.users, :id, :email, { :prompt => 'Please select second player'}, {class: "form-control" })
+      .span.help-block= show_errors(@team, :second_member)
+    = f.submit 'Submit', class: "btn btn-default mb-20"

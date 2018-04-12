@@ -3,3 +3,12 @@
   flex-direction: column;
   min-height: 50px;
 }
+.teams-block{
+  width: 270px;
+  height: 185px;
+  float: left;
+  margin-right: 5px;
+}
+.teams p{
+  cursor: move;
+}

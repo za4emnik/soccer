@@ -1,14 +1,18 @@
 %h2 New match for "#{@tournament.name}" tournament
 
-=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
+.row
+  .pull-left
+    =link_to admin_tournament_matches_path, class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Matches", right: false
 
-= form_for @match, url: admin_tournament_matches_path, method: :post do |f|
-  .form-group{class: add_error_class(@match, :first_team)}
-    = f.collection_select(:first_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select first_team', class: "form-control" })
-    .span.help-block= show_errors(@match, :first_team)
-  .form-group{class: add_error_class(@match, :second_team)}
-    = f.collection_select(:second_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select second team', class: "form-control" })
-    .span.help-block= show_errors(@match, :second_team)
-  .form-group{class: add_error_class(@match, :match_type)}
-    = f.select(:match_type, [['regular', 'regular'], ['1/8', 'one_eight'], ['1/4', 'one_four'], ['1/2', 'one_two'], ['third place', 'third_place']], selected: 'one_eighth')
-  = f.submit 'Submit', class: "btn btn-default mb-20"
+.row.top-buffer
+  = form_for @match, url: admin_tournament_matches_path, method: :post do |f|
+    .form-group{class: add_error_class(@match, :first_team)}
+      = f.collection_select(:first_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select first_team'}, {class: "form-control" })
+      .span.help-block= show_errors(@match, :first_team)
+    .form-group{class: add_error_class(@match, :second_team)}
+      = f.collection_select(:second_team_id, @tournament.teams, :id, :name, { :prompt => 'Please select second team'}, {class: "form-control" })
+      .span.help-block= show_errors(@match, :second_team)
+    .form-group{class: add_error_class(@match, :match_type)}
+      = f.select(:match_type, [['regular', 'regular'], ['1/8', 'one_eight'], ['1/4', 'one_four'], ['1/2', 'one_two'], ['third place', 'third_place']], {selected: 'one_eighth'}, {class: "form-control"})
+    = f.submit 'Submit', class: "btn btn-default mb-20"

@@ -1,33 +1,40 @@
 %h2= "Matches in #{@tournament.name}"
 
-=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
-=link_to 'Generate regular matches', generate_matches_admin_tournament_matches_path, method: :put, class: 'btn btn-default'
-=link_to 'Create new match', new_admin_tournament_match_path, class: 'btn btn-default'
+.row
+  .pull-left
+    =link_to admin_tournaments_path, class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Tournaments", right: false
+    =link_to generate_matches_admin_tournament_matches_path, method: :put, class: 'btn btn-default' do
+      =fa_icon "cogs", text: 'Generate regular matches', right: false
+    =link_to new_admin_tournament_match_path, class: 'btn btn-default' do
+      =fa_icon "plus", text: 'Create new match', right: false
 
-= render partial: 'admin/matches/filter', locals: {action: admin_tournament_matches_path(@tournament)}
+.row.top-buffer
+  = render partial: 'admin/matches/filter', locals: {action: admin_tournament_matches_path(@tournament)}
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th{:scope => "col"} #
-      %th{:scope => "col"} Team#1
-      %th{:scope => "col"} Team#2
-      %th{:scope => "col"} Winner
-      %th{:scope => "col"} Type
-      %th{:scope => "col"} Edit
-      %th{:scope => "col"} Delete
-  %tbody#sortable-votes{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
-    - @matches.each do |match|
-      %tr{ id: "match_#{match.id}" }
-        %th{:scope => "row"}
-          =link_to match.id, admin_tournament_match_path(@tournament, match)
-        %td= match.first_team&.name
-        %td= match.second_team&.name
-        %td= winner(match)
-        %td= match.match_type
-        %td
-          =link_to 'edit', edit_admin_tournament_match_path(@tournament, match)
-        %td
-          =link_to 'delete', admin_tournament_match_path(@tournament, match), method: :delete, data: { confirm: 'Are you sure?' }
+.row
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Team#1
+        %th{:scope => "col"} Team#2
+        %th{:scope => "col"} Winner
+        %th{:scope => "col"} Type
+        %th{:scope => "col"} Edit
+        %th{:scope => "col"} Delete
+    %tbody#sortable-votes{ "data-update-url": "#{sort_admin_tournament_matches_path}" }
+      - @matches.each do |match|
+        %tr{ id: "match_#{match.id}" }
+          %th{:scope => "row"}
+            =link_to match.id, admin_tournament_match_path(@tournament, match)
+          %td= match.first_team&.name
+          %td= match.second_team&.name
+          %td= winner(match)
+          %td= match.match_type
+          %td
+            =link_to 'edit', edit_admin_tournament_match_path(@tournament, match)
+          %td
+            =link_to 'delete', admin_tournament_match_path(@tournament, match), method: :delete, data: { confirm: 'Are you sure?' }
 
-%button#save-match-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save positions
+  %button#save-match-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save positions

@@ -6,18 +6,14 @@ module Admin::MatchesHelper
 
   def winner(match)
     if win?(match, 'first_team')
-      match.first_team.name
+      match&.first_team&.name
     elsif win?(match, 'second_team')
-      match.second_team.name
+      match&.second_team&.name
     elsif win?(match, 'second_team').nil?
       'not played yet'
     else
       'dead heat'
     end
-  end
-
-  def filter_type_checked?(type)
-    params&.[](:match_search)&.[](:type) == type
   end
 
   private

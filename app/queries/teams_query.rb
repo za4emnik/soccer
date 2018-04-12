@@ -24,15 +24,23 @@ class TeamsQuery
   end
 
   def with_filter(filter)
-    if filter&.[](:name)
-      @relation = with_users
-      first_member = "users.email LIKE '%#{filter[:name]}%'"
-      @relation = @relation.where(first_member)
+    if filter&.[](:name) && filter&.[](:type)
+      filter = prepare_filter_by_type(filter)
+      @relation = @relation.where(filter)
     end
     @relation&.uniq
   end
 
+  def prepare_filter_by_type(filter)
+    if filter&.[](:type) == 'team'
+      "teams.name LIKE '%#{filter[:name]}%'"
+    else
+      @relation = with_users
+      "users.email LIKE '%#{filter[:name]}%'"
+    end
+  end
+
   def with_users
-    relation.joins('RIGHT JOIN users ON teams.first_member_id = users.id OR teams.second_member_id = users.id')
+    @relation.joins('RIGHT JOIN users ON teams.first_member_id = users.id OR teams.second_member_id = users.id')
   end
 end

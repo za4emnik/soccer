@@ -6,8 +6,28 @@ class Admin::TeamsController < Admin::AdminBaseController
     @teams = Team.with_filter(@tournament.teams, params[:player_search])
   end
 
+  def new
+    @team = Team.new
+  end
+
+  def edit
+    @team = Team.find params[:id]
+  end
+
+  def update
+    @team = Team.find params[:id]
+    @team.update_attributes(team_edit_params)
+    @team.save ? redirect_to(admin_tournament_teams_path) : render(:edit)
+  end
+
+  def create
+    @team = @tournament.teams.new(teams_params)
+    @team.save ? redirect_to(admin_tournament_teams_path) : render(:new)
+  end
+
   def destroy
-    @tournament.users.delete(User.find(params[:id]))
+    @tournament.teams.delete(Team.find(params[:id]))
+    redirect_to admin_tournament_teams_path
   end
 
   def generate_teams
@@ -40,8 +60,12 @@ class Admin::TeamsController < Admin::AdminBaseController
     end
   end
 
-  def teams_params(team)
-    team.permit(:first_member_id, :second_member_id)
+  def teams_params
+    params.require(:team).permit(:name, :first_member_id, :second_member_id)
+  end
+
+  def team_edit_params
+    params.require(:team).permit(:name)
   end
 
   def valid_data?(teams)

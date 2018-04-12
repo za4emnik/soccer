@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :tournaments do
       post 'done', on: :member
       resources :votes, only: :update
-      resources :teams, only: %i[index new destroy] do
+      resources :teams, except: %i[show] do
         put 'generate_teams', on: :collection
         post 'update_teams', on: :collection
         get 'edit_teams', on: :collection

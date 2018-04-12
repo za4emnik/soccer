@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+# ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -15,6 +15,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'font-awesome-rails'
 gem 'fog-aws'
 gem 'friendly_id', '~> 5.1.0'
 gem 'haml'

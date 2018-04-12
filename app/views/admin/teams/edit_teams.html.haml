@@ -1,12 +1,17 @@
 %h2= "Edit teams"
 
-=link_to 'back to tournaments', admin_tournaments_path, class: 'btn btn-default'
+.row
+  .pull-left
+    =link_to admin_tournament_teams_path, class: 'btn btn-default' do
+      =fa_icon "caret-left", text: "Teams", right: false
 
-- if @tournament.teams
-  #sortable-teams{ "data-update-url": "#{update_teams_admin_tournament_teams_path(@tournament)}" }
-    - @tournament.teams.each do |team|
-      %p= team.name
-      %div{ id: "team-#{team.id}", class: 'connectedSortable teams' }
-        %p.team-name{ id: "member-#{team.first_member.id}" }= team.first_member.email
-        %p.team-name{ id: "member-#{team.second_member.id}" }= team.second_member.email
-%button#save-teams-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save
+.row.top-buffer
+  - if @tournament.teams
+    #sortable-teams{ "data-update-url": "#{update_teams_admin_tournament_teams_path(@tournament)}" }
+      - @tournament.teams.each do |team|
+        .teams-block
+          %p.alert.alert-success= team.name
+          %div{ id: "team-#{team.id}", class: 'connectedSortable teams' }
+            %p.team-name{ id: "member-#{team.first_member.id}" }= team.first_member.email
+            %p.team-name{ id: "member-#{team.second_member.id}" }= team.second_member.email
+  %button#save-teams-order.btn.btn-primary.btn-block{ "data-redirect-url": "#{admin_tournament_matches_path}" } Save
