@@ -82,21 +82,21 @@ RSpec.describe Admin::PlayersController, type: :controller do
   end
 
   # describe '#update_list_of_players' do
-    # let (:tournament) { FactoryBot.create(:tournament) }
-    # let (:array_of_users) { [FactoryBot.create(:user).id, FactoryBot.create(:user).id] }
-    # subject { put :update_list_of_players, params: { tournament_id: tournament.id, users_ids: array_of_users } }
+  # let (:tournament) { FactoryBot.create(:tournament) }
+  # let (:array_of_users) { [FactoryBot.create(:user).id, FactoryBot.create(:user).id] }
+  # subject { put :update_list_of_players, params: { tournament_id: tournament.id, users_ids: array_of_users } }
 
-    # context 'when admin' do
-      # login_admin
+  # context 'when admin' do
+  # login_admin
 
-      # it 'should assign users to curernt tournament' do
-        # expect { subject }.to change { tournament.users.count }.from(0).to(2)
-      # end
+  # it 'should assign users to curernt tournament' do
+  # expect { subject }.to change { tournament.users.count }.from(0).to(2)
+  # end
 
-      # it_behaves_like 'controller have variables', 'tournament': Tournament
-    # end
+  # it_behaves_like 'controller have variables', 'tournament': Tournament
+  # end
 
-    # it_behaves_like 'user on admin page'
-    # it_behaves_like 'guest'
+  # it_behaves_like 'user on admin page'
+  # it_behaves_like 'guest'
   # end
 end

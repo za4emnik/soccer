@@ -23,12 +23,6 @@ class Admin::PlayersController < Admin::AdminBaseController
     redirect_to new_admin_tournament_player_path
   end
 
-  # def update_list_of_players
-    # @tournament.users.delete_all
-    # @tournament.users << User.where(id: params[:users_ids])
-    # redirect_to admin_tournament_players_path(@tournament.id)
-  # end
-
   private
 
   def add_player(player)

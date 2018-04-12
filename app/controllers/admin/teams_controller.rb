@@ -91,6 +91,6 @@ class Admin::TeamsController < Admin::AdminBaseController
   end
 
   def users_even?
-     (@tournament.users.count % 2).positive?
+    (@tournament.users.count % 2).positive?
   end
 end
