@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   load_and_authorize_resource :tournament
+  skip_before_action :verify_authenticity_token, only: :sort
 
   def show
     authorize! :read, @tournament.vote

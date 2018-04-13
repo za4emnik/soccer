@@ -17,4 +17,4 @@ $ ->
       $('.teams').each (item, v) ->
         data.teams[$(this).attr('id').match(/\d+/g)[0]] = [getPlayerId(v, '.team-name:eq(0)'), getPlayerId(v, '.team-name:eq(1)')]
       $.post($('#sortable-teams').data('update-url'), data)
-    # window.location.href = $(this).data('redirect-url')
+      window.location.href = $(this).data('redirect-url')

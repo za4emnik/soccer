@@ -1,6 +1,7 @@
 class Admin::TeamsController < Admin::AdminBaseController
   load_and_authorize_resource :tournament
   load_and_authorize_resource :user, through: :tournament
+  skip_before_action :verify_authenticity_token, only: :update_teams
 
   def index
     @teams = Team.with_filter(@tournament.teams, params[:player_search])
@@ -44,7 +45,6 @@ class Admin::TeamsController < Admin::AdminBaseController
   def update_teams
     if valid_data?(params[:teams])
       update_teams_players(params[:teams])
-      redirect_to admin_tournament_teams_path
     else
       flash[:notice] = 'Can\'t update teams. Teams should be contain 2 players or
                        some players are not present in tournament. Check players.'

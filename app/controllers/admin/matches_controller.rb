@@ -1,6 +1,7 @@
 class Admin::MatchesController < Admin::AdminBaseController
   load_and_authorize_resource :tournament
   before_action :set_match, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token, only: :sort
 
   def index
     @matches = Match.with_filter(@tournament.matches, params[:match_search])
