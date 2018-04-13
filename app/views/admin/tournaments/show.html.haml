@@ -13,7 +13,8 @@
       =link_to admin_tournament_vote_path(@tournament, @tournament.vote), method: :patch, class: 'btn btn-default' do
         =fa_icon "times", text: "Close Vote", right: false
   .pull-right
-    =link_to admin_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' do
+    =link_to 'delete', admin_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }
+    =link_to admin_tournament_path(@tournament), method: :delete do
       =fa_icon "trash-o", text: "Remove tournament", right: false
 .row.top-buffer
   .pull-left
