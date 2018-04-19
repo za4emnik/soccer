@@ -10,3 +10,7 @@ default: &default
 test:
   <<: *default
   database: soccer_test
+
+production:
+  <<: *default
+  database: <%= ENV['DB_NAME'] %>
