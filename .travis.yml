@@ -1,15 +1,15 @@
 addons:
   postgresql: 9.4
-# before_script:
-  # - cp config/database.yml.travis config/database.yml
-  # - psql -c 'create database soccer_test;' -U postgres
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database soccer_test;' -U postgres
 dist: trusty
 language: ruby
 rvm:
   - 2.4.1
-# script:
-  # - bundle exec rails db:migrate RAILS_ENV=test
-  # - bundle exec rspec
+script:
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rspec
 deploy:
   provider: heroku
   api_key:
